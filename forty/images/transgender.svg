@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+    File:
+        http://commons.wikimedia.org/wiki/Image:A_intergender_and_transgender_symbol_transparent.svg
+    Creator:
+        http://commons.wikimedia.org/wiki/User:ParaDox 2007-12-24 11:40
+    Purpose:
+        General
+    See also:
+        with background-color:#FFD9BF
+        http://commons.wikimedia.org/wiki/Image:A_intergender_and_transgender_symbol_bg-color-FFD9BF.svg
+        with background-color:#FFEEDD
+        http://commons.wikimedia.org/wiki/Image:A_intergender_and_transgender_symbol_bg-color-FFEEDD.svg
+    Based on:
+        http://commons.wikimedia.org/wiki/Image:A_TransGender-Symbol_Plain3_with_background-color_FFD9BF.svg
+-->
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.0"
+   width="397"
+   height="560"
+   viewBox="0 0 480 560"
+   id="svg1365">
+  <defs
+     id="defs4">
+    <linearGradient
+       x1="67.534569"
+       y1="422.77271"
+       x2="412.71317"
+       y2="79.813492"
+       id="id0"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         style="stop-color:#ff66bb;stop-opacity:1"
+         offset="0"
+         id="stop9" />
+      <stop
+         style="stop-color:#0c30ad;stop-opacity:1"
+         offset="1"
+         id="stop11" />
+    </linearGradient>
+    <linearGradient
+       x1="67.534569"
+       y1="422.77271"
+       x2="412.71317"
+       y2="79.813492"
+       id="linearGradient1886"
+       xlink:href="#id0"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.7153457,0,0,1.7136387,-222.14776,-199.81901)" />
+  </defs>
+  <path
+     d="M 0.12699572,238.96725 C -3.4644248,333.30073 69.579723,412.09641 160.56372,426.03274 L 160.48808,492.79597 L 86.724041,492.79597 L 86.724041,550.83123 L 160.45588,550.86342 L 160.48808,618.53904 L 218.58117,618.53904 L 218.58117,550.83123 L 292.34521,550.83123 L 292.50473,492.63659 L 218.58117,492.79597 L 218.58117,425.95718 L 218.58117,425.91939 C 309.21112,411.89668 378.98007,333.32362 378.98007,238.96725 C 378.98007,194.87259 363.74435,154.19555 338.20903,121.91436 C 338.20903,121.91436 427.89572,32.044194 427.89572,32.044194 C 427.89572,32.044194 427.89572,115.56675 427.89572,115.56675 L 480,115.56675 L 480,-58.539047 L 305.72078,-58.539047 L 305.72078,-6.4866062 L 389.32652,-6.4866062 L 298.3835,84.244333 C 267.56285,62.521902 229.94992,47.948664 189.53463,49.710327 C 75.63424,54.675133 4.4605167,125.14146 0.12699572,238.96725 z M 189.53464,102.79597 C 264.18817,102.79597 325.08514,163.63199 325.08514,238.21158 C 325.08514,312.7912 264.18817,373.6272 189.53464,373.6272 C 114.88107,373.62721 53.984112,312.7912 53.984112,238.21158 C 53.984112,163.63199 114.88107,102.79597 189.53464,102.79597 z "
+     style="fill:url(#linearGradient1886)"
+     id="path1878" />
+</svg>
