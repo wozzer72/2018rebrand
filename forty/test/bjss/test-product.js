@@ -64,5 +64,13 @@ describe('Products', function() {
     it('should be able to initialise catalogue', function() {
       assert.equal(ourProducts.initialise(), true);
     });
+
+    it('should now be four products', function() {
+      assert.lengthOf(ourProducts.products, 4);
+    });
+
+    it('should have second product being eggs', function() {
+      assert.equal(ourProducts.products[1].name, 'eggs');
+    });
   });
 });
