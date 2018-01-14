@@ -1,3 +1,4 @@
-**/Thumbs.db
 **/tasks.json
 Thumbs.db
+node_modules
+package-lock.json
