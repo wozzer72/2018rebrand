@@ -19,6 +19,11 @@ describe ('Product', function() {
     it('should cost 1.23', function() {
       assert.equal(goodProduct.unitPrice, 1.23);
     });
+
+    it('should now cost 1.73', function() {
+      goodProduct.unitPrice = 1.73;
+      assert.equal(goodProduct.unitPrice, 1.73);
+    });
   });
 
   describe ('Bad Product', function() {
@@ -29,17 +34,17 @@ describe ('Product', function() {
         badProduct.unitPrice='1.23';
       }).to.throw('Price must be a decimal number');
     });
-    it('name should be a string', function() {
+    it('should not be able to change name', function() {
       expect(function () {
         badProduct.name=1.23;
-      }).to.throw('Name must be a string');
+      }).to.throw('Name cannot be changed');
     });
     it('should fail on construction', function() {
       expect(function () {
         var createBadProduct=new bjssProduct.Product("badProduct", "1.23");
       }).to.throw('Price must be a decimal number');
       expect(function () {
-        var createBadProduct=new bjssProduct.Product(1.23, "1.23");
+        var createBadProduct=new bjssProduct.Product(1.23, 1.23);
       }).to.throw('Name must be a string');
     });
   

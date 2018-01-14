@@ -5,8 +5,13 @@
  class Product {
      constructor(name, unitPrice) {
          // initialise product here
-         this.name = name;
          this.unitPrice = unitPrice;
+
+         if (typeof name === "string") {
+            this._name = name;
+         } else {
+            throw "Name must be a string";
+         }
      }
 
      /* properties */
@@ -17,18 +22,15 @@
         if (typeof price === "number") {
             this._unitPrice = price;
         } else {
-            throw "Price must be a decimal number)";
+            throw "Price must be a decimal number";
         }
      }
      get name() {
          return this._name;
      }
+     // on reflection. cannot change name
      set name(name) {
-         if (typeof name === "string") {
-            this._name = name;
-         } else {
-            throw "Name must be a string)";
-         }
+        throw "Name cannot be changed";
      }
 
      /* methods */

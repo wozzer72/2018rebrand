@@ -14,11 +14,11 @@
 var products = require('./bjss/product');
 
 var productCatalogue = new products.Products();
-var newProduct = new products.Product("bread", 1.23);
+var newProduct = new products.Product("1.23", 1.23);
 
 console.log("newProduct name: " + newProduct.name);
 
-newProduct.name = "milk";
-console.log("newProduct name: " + newProduct.name);
+//newProduct.name = "milk";
+//console.log("newProduct name: " + newProduct.name);
 newProduct.unitPrice = 1.78;
 console.log("newProduct unitProce: " + newProduct.unitPrice);
