@@ -81,10 +81,10 @@
                                                     <option value="Peas">Peas</option>
                                                     <option value="Eggs">Eggs</option>
                                                 </select>
-                                            </div>                                            
+                                            </div>
                                         </div>
                                         <div class="3u 12u$(medium)">
-                                            <input type="text" name="quanity" id="quanity" value="" placeholder="Quatity" />
+                                            <input type="text" name="quanity" id="quanity" value="" placeholder="Quantity" />
                                         </div>
                                         <div class="3u$ 12u$(medium)">
                                             <a class="button special icon fa-remove">Add</a>
@@ -95,7 +95,7 @@
                                             <tbody id="orderItems">
                                             </tbody>
                                         </table>
-                                        <a class="button special icon fa-shopping-cart">Checkout</a>
+                                        <a id="checkoutBtn" class="button special icon fa-shopping-cart">Checkout</a>
                                     </div>
                                 </div>
 							</section>
@@ -118,7 +118,7 @@
                                             </div>
                                         </div>
                                         <div class="3us 12u$(medium)">
-                                            <a class="button special icon fa-edit">Edit Order</a>
+                                            <a id="editOrderBtn" class="button special icon fa-edit">Edit Order</a>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -178,10 +178,6 @@
             <script src="assets/js/bjss_model.js"></script>
             
 			<script type="text/javascript">
-				// TODO
-                $("#order").show();
-                $("#ckeckout").show();
-
 			</script>
 	</body>
 </html>
