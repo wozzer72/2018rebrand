@@ -90,6 +90,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+
+// fetching the list of currencies to be display
+var bjssExt = new __WEBPACK_IMPORTED_MODULE_2__bjss_ext__["a" /* default */]();
+
 // initialise the Product Catalogue
 var productCatalogue = new __WEBPACK_IMPORTED_MODULE_0__bjss_product__["Products"]();
 productCatalogue.initialise();
@@ -113,14 +117,23 @@ var formatCurrency = function(currency, value) {
     var formattedCurrency = '';
     switch (currency) {
         //TODO - add other currencies
+        case 'EUR':
+            formattedCurrency = '&euro;' + value.toFixed(2);
+            break;
+        case 'USD':
+            formattedCurrency = '$' + value.toFixed(2);
+            break;
         default:
-            formattedCurrency = "£" + value.toFixed(2);
+            formattedCurrency = '£' + value.toFixed(2);
             break;
     }
     return formattedCurrency;
 }
 
-// display checkout
+// display checkoutimport Extra from './bjss/ext';
+// fetching the list of currencies to be display
+var bjssExt = new __WEBPACK_IMPORTED_MODULE_2__bjss_ext__["a" /* default */]();
+
 var checkoutTemplate = `<thead>
 <tr>
     <th>Product</th>
@@ -136,7 +149,7 @@ var checkoutTemplate = `<thead>
     </tr>
     <tr>
         <td colspan="3">Total ({{>currency}})</td>
-        <td>{{>convertedTotal}}</td>
+        <td>{{:convertedTotal}}</td>
     </tr>
 </tfoot>
 <tbody>
@@ -168,14 +181,11 @@ var populateProductList = function() {
 };
 
 // initialise the 'app'
-
 $().ready(function() {
     // initial state is both views are hidden
     $("#order").hide();
     $("#checkout").hide();
 
-    // fetching the list of currencies to be display
-    var bjssExt = new __WEBPACK_IMPORTED_MODULE_2__bjss_ext__["a" /* default */]();
 
     // until dynamic view is working; default initial order items
     myOrder.add(productCatalogue.products[3], 2);
@@ -194,7 +204,6 @@ $().ready(function() {
     var orderHtml = tmpl.render(mySimpleOrder);
     $("#orderItems").html(orderHtml);
     $("#order").show();
-
 
     /*
     var currencyPromise = bjssExt.currencyList();
@@ -218,32 +227,39 @@ $().ready(function() {
             console.log(exception);
         });
     */
-    // now convert a value to EUR
-    /*
-    var convertPromise = bjssExt.convertToCurrency(10, 'EUR');
-    if (convertPromise != null) {
-        convertPromise.then(function(data) {
-            console.log("£10 is EUR" + data);
-        }).catch(function(exception) {
-            console.log(exception);
-        });
-    }
-    */
 });
+
+// helper function that redraws the checkout
+function refreshCheckout(currency='GBP',convertedTotal=null) {
+    // Could use a custom view method, or template helper function
+    //  to format the currency, or, given we have the simplified
+    //  representation, the total and convertedTotal can be
+    //  formatted here
+
+    // first, get the simplified representation of the Order
+    var mySimpleOrder = myOrder.export();
+    mySimpleOrder.total = formatCurrency('GBP', myOrder.total);
+
+    // add additional currency detail to the simplified rep
+    //  ready for the view.
+    mySimpleOrder.currency = currency;
+    if (convertedTotal) {
+        mySimpleOrder.convertedTotal = formatCurrency(currency, convertedTotal);
+    } else {
+        mySimpleOrder.convertedTotal = formatCurrency('GBP', myOrder.total);;
+    }
+    
+    // now draw view
+    var checkoutHtml = checkoutTmpl.render(mySimpleOrder);
+    $("#checkoutTbl").html(checkoutHtml);
+    $("#checkout").show();    
+}
 
 // attach a callback to the checkout button
 $("#checkoutBtn").click(function() {
     // on selecting checkout, hide the order view, but show the checkout view
     $("#order").hide();
-
-    // add the order total for checkout
-    var mySimpleOrder = myOrder.export();
-    mySimpleOrder.total = myOrder.total;
-    mySimpleOrder.currency = 'GBP';
-    mySimpleOrder.convertedTotal = myOrder.total;
-    var checkoutHtml = checkoutTmpl.render(mySimpleOrder);
-    $("#checkoutTbl").html(checkoutHtml);
-    $("#checkout").show();
+    refreshCheckout();
 })
 
 // attach a callback to the "edit order" button
@@ -254,6 +270,27 @@ $("#editOrderBtn").click(function() {
     $("#checkout").hide();
     $("#order").show();
 })
+
+// attach a callback from currencylistwhen the currency is changed, to recalculate
+// the converted currency and redraw the checkout view
+$("#currencylist").change(function (event) {
+    var newCurrency = $("#currencylist").val();
+    if (newCurrency && newCurrency.length == 3) {
+
+        var convertPromise = bjssExt.convertToCurrency(myOrder.total, newCurrency);
+        if (convertPromise != null) {
+            convertPromise.then(function(convertedTotal) {
+                console.log(myOrder.total + " in GBP is " + convertedTotal.toFixed(2) + " in " + newCurrency);
+
+                // redraw the checkout view
+                refreshCheckout(newCurrency, convertedTotal)
+
+            }).catch(function(exception) {
+                console.log(exception);
+            });
+        }
+    }
+});
 
 /***/ }),
 /* 1 */
@@ -529,7 +566,6 @@ module.exports.OrderItem = OrderItem;
     // Or more simply, divide the Target Rate by the GBP rate, and multiple the value.
     convertToCurrency(value, currency) {
         var thisExt = this;
-        console.log("Inside convertToCurrency");
 
         // TODO: improve error handling here
         if (currency.length != 3 ||
@@ -542,7 +578,7 @@ module.exports.OrderItem = OrderItem;
                 // a simple GET to retrieve JSON
                 var fetchCurrencies = 'USD,GBP,' + currency;
                 var fetchUrl = 'http://apilayer.net/api/live?access_key=' + thisExt._accessKey + '&currencies=' + escape(fetchCurrencies);
-                console.log("Fetching: " + fetchUrl);
+                //console.log("Fetching: " + fetchUrl);
                 $.ajax({
                     url: fetchUrl,
                     type: "get",

@@ -51,7 +51,6 @@
     // Or more simply, divide the Target Rate by the GBP rate, and multiple the value.
     convertToCurrency(value, currency) {
         var thisExt = this;
-        console.log("Inside convertToCurrency");
 
         // TODO: improve error handling here
         if (currency.length != 3 ||
@@ -64,7 +63,7 @@
                 // a simple GET to retrieve JSON
                 var fetchCurrencies = 'USD,GBP,' + currency;
                 var fetchUrl = 'http://apilayer.net/api/live?access_key=' + thisExt._accessKey + '&currencies=' + escape(fetchCurrencies);
-                console.log("Fetching: " + fetchUrl);
+                //console.log("Fetching: " + fetchUrl);
                 $.ajax({
                     url: fetchUrl,
                     type: "get",
