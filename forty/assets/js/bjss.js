@@ -97,9 +97,11 @@ var populateProductList = function() {
 
     // build the product list drop down by simply iterating
     //  through known products in the product catalogue
-    productCatalogue.products.forEach(function(thisProduct) {
+    // NOTE - "index" (the loop counter) is used to introduce
+    //        a unique "product ID"
+    productCatalogue.products.forEach(function(thisProduct, index) {
         productListDropDown.append('<option value="' +
-                                thisProduct.name + 
+                                index + 
                                 '">' + thisProduct.name + ' (&pound;' +
                                 thisProduct.unitPrice.toFixed(2) +
                                 ')</option>');
@@ -131,7 +133,7 @@ $().ready(function() {
     var orderHtml = tmpl.render(mySimpleOrder);
     $("#orderItems").html(orderHtml);
     $("#order").show();
-
+    
     /*
     var currencyPromise = bjssExt.currencyList();
     currencyPromise.then(function (currencies) {
@@ -147,7 +149,7 @@ $().ready(function() {
                         text: thisCurrency
                     }, '</option>')
                 );
-                //currencyDropDown.append('<option>' + thisCurrency + '</option>');
+                //currencyDropDown.ap:pend('<option>' + thisCurrency + '</option>');
             });
             //alert(currencyList);
         }).catch(function(exception) {
@@ -187,7 +189,7 @@ $("#checkoutBtn").click(function() {
     // on selecting checkout, hide the order view, but show the checkout view
     $("#order").hide();
     refreshCheckout();
-})
+});
 
 // attach a callback to the "edit order" button
 $("#editOrderBtn").click(function() {
@@ -196,10 +198,16 @@ $("#editOrderBtn").click(function() {
     //         on checkout
     $("#checkout").hide();
     $("#order").show();
-})
+});
+
+/* it is appreciated that redrawing the whole view (both order and checkout)
+   could be expensive, but given the complexity of the view and the size of
+   the data, the simplicity of redrawing rather than refreshing wins over
+   for this exercise.
+*/
 
 // attach a callback from currencylistwhen the currency is changed, to recalculate
-// the converted currency and redraw the checkout view
+// the converted currency and redraw the checkout view{{:#index}}
 $("#currencylist").change(function (event) {
     var newCurrency = $("#currencylist").val();
     if (newCurrency && newCurrency.length == 3) {
@@ -215,6 +223,38 @@ $("#currencylist").change(function (event) {
             }).catch(function(exception) {
                 console.log(exception);
             });
+        }
+    }
+});
+
+// helper function that redraws the order
+function refreshOrder() {
+    // first, get the simplified representation of the Order
+    var mySimpleOrder = myOrder.export();
+    var orderHtml = tmpl.render(mySimpleOrder);
+    $("#orderItems").html(orderHtml);
+    $("#order").show();
+}
+
+
+// add callback for add line item
+$("#addLineItemBtn").click(function() {
+    var selectedProduct = $("#productlist").val();
+    var quantity = Number($("#quanity").val());
+
+    // TODO: improve error handling
+    if (selectedProduct && selectedProduct > -1 &&
+        quantity && quantity > 0) {
+
+        try {
+            // update the order
+            var newProduct = productCatalogue.products[selectedProduct];
+            myOrder.add(newProduct, quantity);
+
+            // redraw the order
+            refreshOrder();
+        } catch (exception) {
+            console.log(exception);
         }
     }
 });
