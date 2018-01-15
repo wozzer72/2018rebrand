@@ -106,7 +106,7 @@ var orderTmpl = `{{for orderItems}}
 <tr>
     <td>{{>product.name}}</td>
     <td>{{>quantity}}</td>
-    <td width="20%"><a class="button small icon fa-remove">Remove</a></td>
+    <td width="20%"><a data-index="{{:#index}}" class="button small icon fa-remove">Remove</a></td>
 <tr>
 {{/for}}`;
 var tmpl = $.templates(orderTmpl);
@@ -202,14 +202,8 @@ $().ready(function() {
     //console.log("Order items: " + myOrder.lineItems);
 
     // on loading the 'app', display the order page only
+    refreshOrder()
 
-    // jsRender is not able to follow class objects, so need
-    //  to export to a simpler object format it can
-    var mySimpleOrder = myOrder.export();
-    var orderHtml = tmpl.render(mySimpleOrder);
-    $("#orderItems").html(orderHtml);
-    $("#order").show();
-    
     /*
     var currencyPromise = bjssExt.currencyList();
     currencyPromise.then(function (currencies) {
@@ -310,6 +304,26 @@ function refreshOrder() {
     var orderHtml = tmpl.render(mySimpleOrder);
     $("#orderItems").html(orderHtml);
     $("#order").show();
+
+    // attach callbacks to remove link
+    $("a[data-index]").click(function (event) {
+        var thisLinkIndex =  Number($(this).attr('data-index'));
+        if (thisLinkIndex &&
+            thisLinkIndex > -1) {
+
+            // remove the order line item
+            try {
+                myOrder.remove(thisLinkIndex);
+
+                // redraw the order view
+                refreshOrder();
+            } catch (exception) {
+                console.log(exception);
+            }
+        } else {
+            console.log("Unexpected line order index: " + thisLinkIndex);
+        }
+    });
 }
 
 
