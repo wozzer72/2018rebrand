@@ -75,6 +75,22 @@ var checkoutTemplate = `<thead>
 </tbody>`;
 var checkoutTmpl = $.templates(checkoutTemplate);
 
+var populateProductList = function() {
+    var productListDropDown = $("#productlist");
+    productListDropDown.empty();
+
+    // build the product list drop down by simply iterating
+    //  through known products in the product catalogue
+    productCatalogue.products.forEach(function(thisProduct) {
+        productListDropDown.append('<option value="' +
+                                thisProduct.name + 
+                                '">' + thisProduct.name + ' (&pound;' +
+                                thisProduct.unitPrice.toFixed(2) +
+                                ')</option>');
+
+    });
+};
+
 // initialise the 'app'
 import Extra from './bjss/ext';
 $().ready(function() {
@@ -88,6 +104,9 @@ $().ready(function() {
     // until dynamic view is working; default initial order items
     myOrder.add(productCatalogue.products[3], 2);
     myOrder.add(productCatalogue.products[2], 1);
+
+    // initialise the product list view
+    populateProductList();
 
     //console.log("Order items: " + myOrder.lineItems);
 
