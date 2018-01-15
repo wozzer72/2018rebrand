@@ -63,8 +63,14 @@ var checkoutTemplate = `<thead>
 </tr>
 </thead>
 <tfoot>
-    <th colspan="3">Total</th>
-    <th>{{>total}}</th>
+    <tr>
+        <th colspan="3">Total</th>
+        <th>{{>total}}</th>
+    </tr>
+    <tr>
+        <td colspan="3">Total ({{>currency}})</td>
+        <td>{{>convertedTotal}}</td>
+    </tr>
 </tfoot>
 <tbody>
     {{for orderItems}}
@@ -79,6 +85,48 @@ var checkoutTemplate = `<thead>
 var checkoutTmpl = $.templates(checkoutTemplate);
 // add the order total for checkout
 mySimpleOrder.total = myOrder.total;
+mySimpleOrder.currency = 'GBP';
+mySimpleOrder.convertedTotal = myOrder.total;
 var checkoutHtml = checkoutTmpl.render(mySimpleOrder);
 $("#checkoutTbl").html(checkoutHtml);
 
+// initialise the 'app'
+import Extra from './bjss/ext';
+$().ready(function() {
+    // fetching the list of currencies to be display
+    var bjssExt = new Extra();
+
+    /*
+    var currencyPromise = bjssExt.currencyList();
+    currencyPromise.then(function (currencies) {
+            var currencyList = Object.keys(currencies);
+            var currencyDropDown = $("#currencylist");
+            currencyDropDown.empty();
+
+            currencyList.forEach(function(thisCurrency) {
+                console.log("This currency: " + thisCurrency);
+                currencyDropDown.append(
+                    $('<option>', {
+                        value: thisCurrency,
+                        text: thisCurrency
+                    }, '</option>')
+                );
+                currencyDropDown.append('<option>' + thisCurrency + '</option>');
+            });
+            //alert(currencyList);
+        }).catch(function(exception) {
+            console.log(exception);
+        });
+    */
+    // now convert a value to EUR
+    /*
+    var convertPromise = bjssExt.convertToCurrency(10, 'EUR');
+    if (convertPromise != null) {
+        convertPromise.then(function(data) {
+            console.log("£10 is EUR" + data);
+        }).catch(function(exception) {
+            console.log(exception);
+        });
+    }
+    */
+});

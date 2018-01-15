@@ -73,6 +73,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bjss_product___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__bjss_product__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bjss_order__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bjss_order___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__bjss_order__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bjss_ext__ = __webpack_require__(3);
 /* WOZiTech - BJSS Challenge */
 
 // VueJS/Angular are not readily available in my corporate website; opting to use JSview (with JSOberservale/JSTemplates)
@@ -138,8 +139,14 @@ var checkoutTemplate = `<thead>
 </tr>
 </thead>
 <tfoot>
-    <th colspan="3">Total</th>
-    <th>{{>total}}</th>
+    <tr>
+        <th colspan="3">Total</th>
+        <th>{{>total}}</th>
+    </tr>
+    <tr>
+        <td colspan="3">Total ({{>currency}})</td>
+        <td>{{>convertedTotal}}</td>
+    </tr>
 </tfoot>
 <tbody>
     {{for orderItems}}
@@ -154,10 +161,51 @@ var checkoutTemplate = `<thead>
 var checkoutTmpl = $.templates(checkoutTemplate);
 // add the order total for checkout
 mySimpleOrder.total = myOrder.total;
+mySimpleOrder.currency = 'GBP';
+mySimpleOrder.convertedTotal = myOrder.total;
 var checkoutHtml = checkoutTmpl.render(mySimpleOrder);
 $("#checkoutTbl").html(checkoutHtml);
 
+// initialise the 'app'
 
+$().ready(function() {
+    // fetching the list of currencies to be display
+    var bjssExt = new __WEBPACK_IMPORTED_MODULE_2__bjss_ext__["a" /* default */]();
+
+    /*
+    var currencyPromise = bjssExt.currencyList();
+    currencyPromise.then(function (currencies) {
+            var currencyList = Object.keys(currencies);
+            var currencyDropDown = $("#currencylist");
+            currencyDropDown.empty();
+
+            currencyList.forEach(function(thisCurrency) {
+                console.log("This currency: " + thisCurrency);
+                currencyDropDown.append(
+                    $('<option>', {
+                        value: thisCurrency,
+                        text: thisCurrency
+                    }, '</option>')
+                );
+                currencyDropDown.append('<option>' + thisCurrency + '</option>');
+            });
+            //alert(currencyList);
+        }).catch(function(exception) {
+            console.log(exception);
+        });
+    */
+    // now convert a value to EUR
+    /*
+    var convertPromise = bjssExt.convertToCurrency(10, 'EUR');
+    if (convertPromise != null) {
+        convertPromise.then(function(data) {
+            console.log("£10 is EUR" + data);
+        }).catch(function(exception) {
+            console.log(exception);
+        });
+    }
+    */
+});
 
 /***/ }),
 /* 1 */
@@ -374,6 +422,111 @@ class Order {
 
 module.exports.Order = Order;
 module.exports.OrderItem = OrderItem;
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/*
+ * ext.js - encapsulates the fetching of currencies and currency conversion
+ * 
+ * Relies on jquery (ajax).
+ * Relies upon ES6 Promises (will not work in Internet Explorer unless using bluebird.js).
+ * 
+ * Example urls: http://apilayer.net/api/list?access_key=41607a8f5f4f41bab7fd6a19893bb4fd
+ */
+
+ class Extra {
+    constructor() {
+        this._jsonRatesUrl = 'http://jsonrates.com/';
+        this._accessKey = '41607a8f5f4f41bab7fd6a19893bb4fd';
+    }
+
+    /* properties */
+
+    /* methods */
+
+    // returns list of currencies, as fetched from from jsonRates
+    //  => using Promise
+    currencyList() {
+        var thisExt = this;
+        return new Promise(function(resolve, reject) {
+            // a simple GET to retrieve JSON
+            $.ajax({
+                url: 'http://apilayer.net/api/list?access_key=' + thisExt._accessKey,
+                type: "get",
+                contentType: false,
+                dataType: "json",
+                processData: false,
+                cache: false,
+                success: function(data) {
+                    resolve(data.currencies);
+                },
+                error: function (jqXHR, exception) {
+                    reject(exception);
+                }
+            });
+        });
+    }
+
+    // returns the converted value from GBP to the given currency
+    // => using Promise
+    // Note - when providing "source" parameter to API request,
+    //  got the response "- Your current Subscription Plan does not support Source Currency Switching."
+    // Instead, using a rough calculation based on the USD as default currency by:
+    //  1. Get three currencies (USD - default, plus the source currency of GBP and the target currency, e.g. EUR)
+    //  2. Convert the GBP value to USD value, using "USDGBP"
+    //  3. Then convert from USD to the target currency using "USB[target currency]"
+    // Or more simply, divide the Target Rate by the GBP rate, and multiple the value.
+    convertToCurrency(value, currency) {
+        var thisExt = this;
+        console.log("Inside convertToCurrency");
+
+        // TODO: improve error handling here
+        if (currency.length != 3 ||
+            value < 0) {
+            console.log("Unexpected parameters");
+            return null;
+
+        } else {
+            return new Promise(function(resolve, reject) {
+                // a simple GET to retrieve JSON
+                var fetchCurrencies = 'USD,GBP,' + currency;
+                var fetchUrl = 'http://apilayer.net/api/live?access_key=' + thisExt._accessKey + '&currencies=' + escape(fetchCurrencies);
+                console.log("Fetching: " + fetchUrl);
+                $.ajax({
+                    url: fetchUrl,
+                    type: "get",
+                    contentType: false,
+                    dataType: "json",
+                    processData: false,
+                    cache: false,
+                    success: function(data) {
+                        // TODO: Improve error handling here too
+                        if (data.quotes) {
+                            var fromGBPtoUSDrate = Number(data.quotes['USDGBP']);
+                            var fromUSDtoTargetRate = Number(data.quotes['USD'+currency]);
+                            var targetExchangeRate = fromUSDtoTargetRate / fromGBPtoUSDrate;
+
+                            resolve(value*targetExchangeRate);                            
+                        } else {
+                            reject("Missing quotes");
+                        }
+                    },
+                    error: function (jqXHR, exception) {
+                        reject(exception);
+                    }
+                });
+            });
+        }
+    }
+ }
+/* harmony export (immutable) */ __webpack_exports__["a"] = Extra;
+;
+
+
+ 
 
 /***/ })
 /******/ ]);
