@@ -232,8 +232,7 @@ function refreshOrder() {
     // attach callbacks to remove link
     $("a[data-index]").click(function (event) {
         var thisLinkIndex =  Number($(this).attr('data-index'));
-        if (thisLinkIndex &&
-            thisLinkIndex > -1) {
+        if (thisLinkIndex > -1) {
 
             // remove the order line item
             try {

@@ -116,6 +116,7 @@ class Order {
         };
 
         // simply iterate over order items
+        // Note - we know that order items are in GBP (hence subtotal is two decimal places)
         this._lineItems.forEach(function(thisLineItem) {
             exportType.orderItems.push({
                 product: {
@@ -123,7 +124,7 @@ class Order {
                     unitPrice: thisLineItem.product.unitPrice
                 },
                 quantity: thisLineItem.quantity,
-                subTotal: thisLineItem.subTotal
+                subTotal: Math.round(thisLineItem.subTotal * 100) / 100
             });
         });
 
