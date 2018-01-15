@@ -27,6 +27,12 @@ describe ('Order Items', function() {
     it('should be 7 of them', function() {
       assert.equal(goodOrderItem.quantity, 7);
     });
+    it('should be 0.95 unit price', function() {
+      assert.equal(goodOrderItem.product.unitPrice, 0.95);
+    });
+    it('should have subtotal of 7*0.95=6.65', function() {
+      assert.equal(goodOrderItem.subTotal.toFixed(2), 6.65);
+    });
   });
   
   describe('Bad Order Item', function() {
@@ -107,7 +113,10 @@ describe ('Order', function() {
       expect(goodOrder.lineItems[0].product.name).to.equal('peas');
     });
 
-    console.log("Exported order: " + goodOrder.export());
+    it('should have order total of 3*peas @ 0.95 each = 2.85', function() {
+      expect(goodOrder.total.toFixed(2)).to.equal('2.85');
+    });
+    
   }); // end describe('Good Order'
 
   describe('Bad Order', function() {
