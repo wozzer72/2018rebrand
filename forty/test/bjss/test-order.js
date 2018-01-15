@@ -104,7 +104,9 @@ describe ('Order', function() {
     });
     it('should now have one order item that being peas', function() {
       expect(goodOrder.lineItems[0].product.name).to.equal('peas');
-    });      
+    });
+
+    console.log("Exported order: " + goodOrder.export());
   }); // end describe('Good Order'
 
   describe('Bad Order', function() {

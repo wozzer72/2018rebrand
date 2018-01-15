@@ -4,7 +4,9 @@
   "description": "WOZiTech corporate website using the forty HTMLUP template",
   "main": "index.js",
   "scripts": {
-    "test": "mocha 'test/**/test-*.js'"
+    "test": "mocha 'test/**/test-*.js'",
+    "build": "webpack",
+    "watch": "webpack -w"
   },
   "repository": {
     "type": "git",
@@ -23,7 +25,9 @@
   "homepage": "https://github.com/wozzer72/2018rebrand#readme",
   "devDependencies": {
     "assert": "^1.4.1",
+    "babel-loader": "^7.1.2",
     "chai": "^4.1.2",
-    "mocha": "^4.1.0"
+    "mocha": "^4.1.0",
+    "webpack": "^3.10.0"
   }
 }

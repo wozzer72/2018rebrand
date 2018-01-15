@@ -42,6 +42,11 @@ class OrderItem {
             throw "Product cannot be changed";
         }
     }
+    // calculates the sub total for this line item by multipling
+    //  the product price by quantity
+    get subTotal() {
+        return this._product.unitPrice * this._quantity;
+    }
 
      /* methods */
 }
@@ -58,6 +63,14 @@ class Order {
     }
     set lineItems(items) {
         throw "Cannot set lineitems";
+    }
+    // the generated property returns the total of all line items
+    get total() {
+        var thisTotal = 0;
+        this._lineItems.forEach(function(thisLineItem) {
+            thisTotal += thisLineItem.subTotal;
+        });
+        return thisTotal;
     }
 
     /* methods */
@@ -77,6 +90,44 @@ class Order {
         } else {
             throw "Unexpected index";
         }
+    }
+
+    // this method iterates through the Order and exports to a pure object format
+    //  that can be used by jsRender
+    /*
+    orderItems : [
+        {
+            product: {
+                name: "Doughnuts"
+            },
+            quantity: 2
+        },
+        {
+            product: {
+                name: "Potatoes"
+            },
+            quantity: 5
+        }
+    ]
+    */
+    export() {
+        var exportType = {
+            orderItems : []
+        };
+
+        // simply iterate over order items
+        this._lineItems.forEach(function(thisLineItem) {
+            exportType.orderItems.push({
+                product: {
+                    name: thisLineItem.product.name,
+                    unitPrice: thisLineItem.product.unitPrice
+                },
+                quantity: thisLineItem.quantity,
+                subTotal: thisLineItem.subTotal
+            });
+        });
+
+        return exportType;
     }
 }
 
