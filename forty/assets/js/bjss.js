@@ -117,8 +117,8 @@ $().ready(function() {
 
 
     // until dynamic view is working; default initial order items
-    myOrder.add(productCatalogue.products[3], 2);
-    myOrder.add(productCatalogue.products[2], 1);
+    //myOrder.add(productCatalogue.products[3], 2);
+    //myOrder.add(productCatalogue.products[2], 1);
 
     // initialise the product list view
     populateProductList();
@@ -128,7 +128,6 @@ $().ready(function() {
     // on loading the 'app', display the order page only
     refreshOrder()
 
-    /*
     var currencyPromise = bjssExt.currencyList();
     currencyPromise.then(function (currencies) {
             var currencyList = Object.keys(currencies);
@@ -149,7 +148,6 @@ $().ready(function() {
         }).catch(function(exception) {
             console.log(exception);
         });
-    */
 });
 
 // helper function that redraws the checkout
