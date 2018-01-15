@@ -47,8 +47,11 @@ var formatCurrency = function(currency, value) {
         case 'USD':
             formattedCurrency = '$' + value.toFixed(2);
             break;
-        default:
+        case 'GBP':
             formattedCurrency = '£' + value.toFixed(2);
+            break;
+        default:
+            formattedCurrency = value.toFixed(0);
             break;
     }
     return formattedCurrency;
@@ -144,7 +147,7 @@ $().ready(function() {
                         text: thisCurrency
                     }, '</option>')
                 );
-                currencyDropDown.append('<option>' + thisCurrency + '</option>');
+                //currencyDropDown.append('<option>' + thisCurrency + '</option>');
             });
             //alert(currencyList);
         }).catch(function(exception) {
