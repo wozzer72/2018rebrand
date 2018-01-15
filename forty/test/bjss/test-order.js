@@ -6,6 +6,7 @@ var chai = require('chai');
 var assert = chai.assert;
 var expect = chai.expect;
 
+// basic mocha configuration is ES5 aware only; use ES5 style imports
 var bjssProduct = require('../../assets/js/bjss/product');
 var bjssOrder = require('../../assets/js/bjss/order');
 
