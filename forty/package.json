@@ -4,7 +4,7 @@
   "description": "WOZiTech corporate website using the forty HTMLUP template",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/**/test-*.js",
+    "test": "mocha test/**/test-*.js --require babel-register",
     "build": "webpack",
     "watch": "webpack -w"
   },
@@ -26,6 +26,8 @@
   "devDependencies": {
     "assert": "^1.4.1",
     "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
     "chai": "^4.1.2",
     "mocha": "^4.1.0",
     "webpack": "^3.10.0"

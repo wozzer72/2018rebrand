@@ -132,5 +132,4 @@ class Order {
     }
 }
 
-module.exports.Order = Order;
-module.exports.OrderItem = OrderItem;
+export {Order, OrderItem}

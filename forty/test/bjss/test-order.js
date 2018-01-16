@@ -1,25 +1,29 @@
 /*
  * mocha test script against the BJSS tech challenge "Order" model
+ * 
+ * 20180116 Warren Ayling - refactoring as ES6 and using babel to transpile to ES5 for use in Mocha
+ *                          Note, could have used webpack/babel to transpile this Mocha test file,
+ *                          but mocha using "babel-register" module, can simply require from the
+ *                          mocha command line within package.json.
+ *                          Don't forget the .babelrc and the preset.
  */
-//var assert = require('assert');
-var chai = require('chai');
-var assert = chai.assert;
-var expect = chai.expect;
+import chai from 'chai';
+let assert = chai.assert;
+let expect = chai.expect;
 
-// basic mocha configuration is ES5 aware only; use ES5 style imports
-var bjssProduct = require('../../assets/js/bjss/product');
-var bjssOrder = require('../../assets/js/bjss/order');
+import {Products, Product} from '../../assets/js/bjss/product';
+import {Order, OrderItem} from '../../assets/js/bjss/order';
 
 /* Note - Orders rely on Products; the testing of Products should be done prior to Orders */
 
-var ourProducts = new bjssProduct.Products();
+let ourProducts = new Products();
 ourProducts.initialise();   
-firstProduct = ourProducts.products[0];
-secondProduct = ourProducts.products[2];
+let firstProduct = ourProducts.products[0];
+let secondProduct = ourProducts.products[2];
 
 describe ('Order Items', function() {
   describe('Good Order Item', function() {
-    var goodOrderItem = new bjssOrder.OrderItem(firstProduct, 7);
+    let goodOrderItem = new OrderItem(firstProduct, 7);
 
     it('should be peas', function() {
       assert.equal(goodOrderItem.product.name, 'peas');
@@ -36,7 +40,7 @@ describe ('Order Items', function() {
   });
   
   describe('Bad Order Item', function() {
-    var goodOrderItem = new bjssOrder.OrderItem(ourProducts.products[0], 7);
+    let goodOrderItem = new OrderItem(ourProducts.products[0], 7);
 
     it('should fail on change of product', function() {
       expect(function () {
@@ -51,22 +55,22 @@ describe ('Order Items', function() {
 
     it('should fail if quantity is zero', function() {
       expect(function () {
-        var badOrderItem = new bjssOrder.OrderItem(ourProducts.products[0], 0);
+        let badOrderItem = new OrderItem(ourProducts.products[0], 0);
       }).to.throw('Unknown quantity');
     });
     it('should fail if quantity is less than zone', function() {
       expect(function () {
-        var badOrderItem = new bjssOrder.OrderItem(ourProducts.products[0], -1);
+        let badOrderItem = new OrderItem(ourProducts.products[0], -1);
       }).to.throw('Unknown quantity');
     });
     it('should fail if quantity is not a whole number', function() {
       expect(function () {
-        var badOrderItem = new bjssOrder.OrderItem(ourProducts.products[0], 1.1);
+        let badOrderItem = new OrderItem(ourProducts.products[0], 1.1);
       }).to.throw('Unknown quantity');
     });
     it('should fail if product is not a "BJSS" Product', function() {
       expect(function () {
-        var badOrderItem = new bjssOrder.OrderItem(1, 1);
+        let badOrderItem = new OrderItem(1, 1);
       }).to.throw('Undefined product');
     });
     // end of describe('Bad Order Item'
@@ -77,7 +81,7 @@ describe ('Order Items', function() {
 // chai testing using expect
 describe ('Order', function() {
   describe('Good Order', function() {
-    var goodOrder = new bjssOrder.Order();
+    let goodOrder = new Order();
 
     it('should start with no order items', function() {
       expect(goodOrder.lineItems).to.have.lengthOf(0);
@@ -120,7 +124,7 @@ describe ('Order', function() {
   }); // end describe('Good Order'
 
   describe('Bad Order', function() {
-    var goodOrder = new bjssOrder.Order();
+    let goodOrder = new Order();
     goodOrder.add(secondProduct, 1);
 
     it('should fail when deleting item out of bounds', function() {

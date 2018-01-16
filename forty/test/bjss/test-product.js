@@ -1,5 +1,7 @@
 /*
- * mocha test script against the BJSS tech challenge "Product" model
+ * mocha test script against the BJSS tech challenge "Product" model.
+ * 
+ * Note - this is still using ES5 format
  */
 //var assert = require('assert');
 var chai = require('chai');

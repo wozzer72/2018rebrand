@@ -70,9 +70,7 @@
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bjss_product__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bjss_product___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__bjss_product__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bjss_order__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bjss_order___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__bjss_order__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bjss_ext__ = __webpack_require__(3);
 /* WOZiTech - BJSS Challenge */
 
@@ -95,12 +93,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var bjssExt = new __WEBPACK_IMPORTED_MODULE_2__bjss_ext__["a" /* default */]();
 
 // initialise the Product Catalogue
-var productCatalogue = new __WEBPACK_IMPORTED_MODULE_0__bjss_product__["Products"]();
+var productCatalogue = new __WEBPACK_IMPORTED_MODULE_0__bjss_product__["a" /* Products */]();
 productCatalogue.initialise();
 //console.log(productCatalogue);
 
 // initialise a new Order - note, only ever one active order
-var myOrder = new __WEBPACK_IMPORTED_MODULE_1__bjss_order__["Order"]();
+var myOrder = new __WEBPACK_IMPORTED_MODULE_1__bjss_order__["a" /* Order */]();
 
 var orderTmpl = `{{for orderItems}}
 <tr>
@@ -193,8 +191,8 @@ $().ready(function() {
 
 
     // until dynamic view is working; default initial order items
-    myOrder.add(productCatalogue.products[3], 2);
-    myOrder.add(productCatalogue.products[2], 1);
+    //myOrder.add(productCatalogue.products[3], 2);
+    //myOrder.add(productCatalogue.products[2], 1);
 
     // initialise the product list view
     populateProductList();
@@ -204,7 +202,6 @@ $().ready(function() {
     // on loading the 'app', display the order page only
     refreshOrder()
 
-    /*
     var currencyPromise = bjssExt.currencyList();
     currencyPromise.then(function (currencies) {
             var currencyList = Object.keys(currencies);
@@ -225,7 +222,6 @@ $().ready(function() {
         }).catch(function(exception) {
             console.log(exception);
         });
-    */
 });
 
 // helper function that redraws the checkout
@@ -308,8 +304,7 @@ function refreshOrder() {
     // attach callbacks to remove link
     $("a[data-index]").click(function (event) {
         var thisLinkIndex =  Number($(this).attr('data-index'));
-        if (thisLinkIndex &&
-            thisLinkIndex > -1) {
+        if (thisLinkIndex > -1) {
 
             // remove the order line item
             try {
@@ -351,84 +346,90 @@ $("#addLineItemBtn").click(function() {
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 /*
  * BJSS Tech challenge - Products and Product
  */
 
- class Product {
-     constructor(name, unitPrice) {
-         // initialise product here
-         this.unitPrice = unitPrice;
+class Product {
+    constructor(name, unitPrice) {
+        // initialise product here
+        this.unitPrice = unitPrice;
 
-         if (typeof name === "string") {
-            this._name = name;
-         } else {
-            throw "Name must be a string";
-         }
-     }
-
-     /* properties */
-     get unitPrice() {
-         return this._unitPrice;
-     }
-     set unitPrice(price) {
-        if (typeof price === "number") {
-            this._unitPrice = price;
+        if (typeof name === "string") {
+        this._name = name;
         } else {
-            throw "Price must be a decimal number";
+        throw "Name must be a string";
         }
-     }
-     get name() {
-         return this._name;
-     }
-     // on reflection. cannot change name
-     set name(name) {
-        throw "Name cannot be changed";
-     }
+    }
 
-     /* methods */
- }
+    /* properties */
+    get unitPrice() {
+        return this._unitPrice;
+    }
+    set unitPrice(price) {
+    if (typeof price === "number") {
+        this._unitPrice = price;
+    } else {
+        throw "Price must be a decimal number";
+    }
+    }
+    get name() {
+        return this._name;
+    }
+    // on reflection. cannot change name
+    set name(name) {
+    throw "Name cannot be changed";
+    }
 
- class Products {
-     constructor() {
-        this._products = [];
-     }
+    /* methods */
+}
+/* unused harmony export Product */
 
-     /* properties */
-     // cannot change the set of products in a catalogue; just get the list of products
-     get products() {
-         return this._products;
-     }
 
-     /* methods */
-     // for this challenge, assume an initial set of products (as per the brief)
-     initialise() {
-        this._products.push(
-            new Product('peas', 0.95)
-        );
-        this._products.push(
-            new Product('eggs', 2.10)
-        );
-        this._products.push(
-            new Product('milk', 1.30)
-        );
-        this._products.push(
-            new Product('beans', 0.73)
-        );
+class Products {
+    constructor() {
+    this._products = [];
+    }
 
-        return true;
-     }
- }
+    /* properties */
+    // cannot change the set of products in a catalogue; just get the list of products
+    get products() {
+        return this._products;
+    }
 
- module.exports.Product = Product;
- module.exports.Products = Products;
+    /* methods */
+    // for this challenge, assume an initial set of products (as per the brief)
+    initialise() {
+    this._products.push(
+        new Product('peas', 0.95)
+    );
+    this._products.push(
+        new Product('eggs', 2.10)
+    );
+    this._products.push(
+        new Product('milk', 1.30)
+    );
+    this._products.push(
+        new Product('beans', 0.73)
+    );
+
+    return true;
+    }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Products;
+
+
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Order; });
+/* unused harmony export OrderItem */
 /*
  * BJSS Tech challenge - Order and OrderItem
  */
@@ -547,6 +548,7 @@ class Order {
         };
 
         // simply iterate over order items
+        // Note - we know that order items are in GBP (hence subtotal is two decimal places)
         this._lineItems.forEach(function(thisLineItem) {
             exportType.orderItems.push({
                 product: {
@@ -554,7 +556,7 @@ class Order {
                     unitPrice: thisLineItem.product.unitPrice
                 },
                 quantity: thisLineItem.quantity,
-                subTotal: thisLineItem.subTotal
+                subTotal: Math.round(thisLineItem.subTotal * 100) / 100
             });
         });
 
@@ -562,8 +564,7 @@ class Order {
     }
 }
 
-module.exports.Order = Order;
-module.exports.OrderItem = OrderItem;
+
 
 /***/ }),
 /* 3 */
