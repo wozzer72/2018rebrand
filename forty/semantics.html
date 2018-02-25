@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>WOZiTech Limited - Seneca</title>
+		<title>WOZiTech Limited - Semantics Integration</title>
 		<meta name="description" content"Seneca challenge"/>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -56,53 +56,11 @@
 					<section id="banner" class="major">
 						<div class="inner">
 							<header class="major">
-								<h1>Seneca Challenge</h1>
+								<h1>Semantics Integration Challenge</h1>
 							</header>
 							<div class="content">
-								<p>For Lucas Feddern at Seneca</p>
+								<p>For Charles Ivie</p>
 							</div>
-						</div>
-					</section>
-
-					<section id="challangepost">
-						<div class="inner">
-							<section>
-								<header class="major">
-									<h2>Post</h2>
-								</header>
-								
-								<form id="challengeForm" method="post" action="#">
-									<div class="field half first">
-										<label for="userId">User Id</label>
-										<input type="text" name="userId" id="userId" />
-									</div>
-									<div class="field half">
-										<label for="courseId">Course Id</label>
-										<input type="text" name="courseId" id="courseId" />
-									</div>
-									<div class="field half first">
-										<label for="totalModulesStudied">Total Modules Studied</label>
-										<input type="text" name="totalModulesStudied" id="totalModulesStudied" />
-									</div>
-									<div class="field half">
-										<label for="averageScore">Average Score</label>
-										<input type="text" name="averageScore" id="averageScore" />
-									</div>
-									<div class="field half first">
-										<label for="timeStudied">Time Studied</label>
-										<input type="text" name="timeStudied" id="timeStudied" />
-									</div>
-									<div class="field half">
-									</div>
-									<ul class="actions">
-										<li><input type="submit" id="chalengepostsubmit" value="Send Stats" class="special" /></li>
-										<li><input type="reset" value="Clear" /></li>
-									</ul>
-								</form>
-								<div id="challengeFormSent" style="display: none;">
-									<pre id="challengeFormSentText">success response</pre>
-								</div>
-							</section>
 						</div>
 					</section>
 
@@ -114,28 +72,25 @@
 								</header>
 
 								<form id="challengeGetForm" method="post" action="#">
-									<div class="field half first">
-										<label for="getUserId">User Id</label>
-										<input type="text" name="getUserId" id="getUserId" />
+									<div class="12u$">
+										<div class="select-wrapper">
+											<select name="question" id="question">
+												<option value="0">- Question -</option>
+												<option value="1">How Old is Tony Blair?</option>
+												<option value="2">Where was David Cameron born?</option>
+											</select>
+										</div>
 									</div>
-									<div class="field half">
-										<label for="getCourseId">Course Id</label>
-										<input type="text" name="getCourseId" id="getCourseId" />
-									</div>
+
 									<ul class="actions">
-										<li><input id="chalengegetsubmit" type="submit" value="Get Stats" class="special" /></li>
+										<li><input id="chalengegetsubmit" type="submit" value="Answer?" class="special" /></li>
 										<li><input type="reset" value="Clear" /></li>
 									</ul>
 								</form>
-								<div id="challengeGetFormSent" style="display: none;">
-									<pre id="challengeFormSentText">success response</pre>
-								</div>
 								<div id="challengeGetResults" style="display: block;">
 									<p>
 										<ul>
-											<li id="retTotalModulesStudied">Total Modules Studied: #3</li>
-											<li id="retAverageScore">Average Score: #13</li>
-											<li id="retTimeStudied">Time Studied: #23</li>
+											<li id="retAge">Age: #3</li>
 										</ul>
 									</p>
 								</div>
@@ -166,10 +121,9 @@
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
-			<script src="assets/js/seneca.js"></script>
+			<script src="assets/js/semantics.js"></script>
 			<script>
 				// reset the form
-				resetChallengeForm();
 				resetGetChallengeForm();
 			</script>
 	</body>
