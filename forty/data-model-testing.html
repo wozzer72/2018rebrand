@@ -20,61 +20,74 @@
 			<div id="wrapper">
 
 				<!-- Header -->
-					<header id="header">
-						<a href="index.html" class="logo"><strong>WOZ</strong>iTech <span>Ltd</span></a>
-						<nav>
-							<a href="#menu">Menu</a>
-						</nav>
-					</header>
+				<header id="header">
+					<a href="index.html" class="logo"><strong>WOZ</strong>iTech <span>Ltd</span></a>
+					<nav>
+						<a href="#menu">Menu</a>
+					</nav>
+				</header>
 
 				<!-- Menu -->
-					<nav id="menu">
-						<ul class="links">
-							<li><a href="aboutus.html">About Us</a></li>
-							<li><a href="technologies.html">Technologies</a></li>
-							<li><a href="projects.html">Projects</a></li>
-							<li><a href="2018.html">The Year of 2018</a></li>
-						</ul>
-						<ul class="actions vertical">
-							<li><a href="index.html" class="button special fit">Home</a></li>
-						</ul>
-					</nav>
+				<nav id="menu">
+					<ul class="links">
+						<li><a href="aboutus.html">About Us</a></li>
+						<li><a href="technologies.html">Technologies</a></li>
+						<li><a href="projects.html">Projects</a></li>
+						<li><a href="2018.html">The Year of 2018</a></li>
+					</ul>
+					<ul class="actions vertical">
+						<li><a href="index.html" class="button special fit">Home</a></li>
+					</ul>
+				</nav>
+
+				<section id="banner" class="major">
+					<div class="inner">
+						<header class="major">
+							<h1>Data Model Testing</i></h1>
+						</header>
+						<div class="content">
+							<p>Testing a Data Model</p>
+							<ul class="actions">
+								<li><a target="_blank" href="#" class="button next scrolly">Get the code</a></li>
+							</ul>
+						</div>
+					</div>
+				</section>
 
 				<!-- Main -->
-					<div id="main" class="alt">
+				<div id="main" class="alt">
 
-						<!-- One -->
-							<section id="one">
-								<div class="inner">
-									<header class="major">
-										<h1>Testing a Data Model</h1>
-										<h2>Is 'Fit for Purpose'</h2>
-										<p>Using microservice and GraphQL</p>
-									</header>
-									<p>
-										A recent (circa 2018) contract has me working on data driven microservice architecure; this is where the data is king and the data determines how
-										the enterprise must respond. While evolving the model, to demonstrate the model was satisfying the requirements, I was creating examples manually and
-										validating against JSON Schema (using <a href="https://www.npmjs.com/package/ajv">avj</a>) and then transforming those
-										examples to another formats (using <a href="https://www.npmjs.com/package/jsonata">JSONata</a>) and revalidating.
-									</p>
-									<p>
-										It was quicker than creating the JSON from hand and manually mapping data, but as the number of examples grew and
-										the different aspects of the model grew, so did the number of examples and the need to create even more examples more readily. 
-										Having creating more contrived examples, as the data model changed, not only did the new examples need validating,
-										so did all the previus examples to ensure nothing had been broken. And whilst JSON Schema is good, it does not lend itself to rich context semantic checking of data, especially if the
-										data is linked across sources.
-									</p>
-									<p>
-										This project uses:
-										<ul>
-											<li>node.js &amp; nest - to create a rich set of microservices; significantly, the 'local' data source will be wrapped as microservices using nest's strong MVC framework and pipelines to enforce JSON schema validation and automatic transformation/translation to other schema (knwon pipelines) - still using avj and JSONnata.</li>
-											<li><a href="https://www.npmjs.com/package/graphql">graphql</a> - a query language for APIs (microservices - via nest above), created by Facebook - to fetch data across multiple sources</li>
-										</ul>
-									</p>
-							</div>
-							</section>
+					<!-- One -->
+						<section id="one">
+							<div class="inner">
+								<header class="major">
+									<h2>Is 'Fit for Purpose'</h2>
+									<p>Using microservice and GraphQL</p>
+								</header>
+								<p>
+									A recent (circa 2018) contract has me working on data driven microservice architecure; this is where the data is king and the data determines how
+									the enterprise must respond. While evolving the model, to demonstrate the model was satisfying the requirements, I was creating examples manually and
+									validating against JSON Schema (using <a href="https://www.npmjs.com/package/ajv">avj</a>) and then transforming those
+									examples to another formats (using <a href="https://www.npmjs.com/package/jsonata">JSONata</a>) and revalidating.
+								</p>
+								<p>
+									It was quicker than creating the JSON from hand and manually mapping data, but as the number of examples grew and
+									the different aspects of the model grew, so did the number of examples and the need to create even more examples more readily. 
+									Having creating more contrived examples, as the data model changed, not only did the new examples need validating,
+									so did all the previus examples to ensure nothing had been broken. And whilst JSON Schema is good, it does not lend itself to rich context semantic checking of data, especially if the
+									data is linked across sources.
+								</p>
+								<p>
+									This project uses:
+									<ul>
+										<li>node.js &amp; nest - to create a rich set of microservices; significantly, the 'local' data source will be wrapped as microservices using nest's strong MVC framework and pipelines to enforce JSON schema validation and automatic transformation/translation to other schema (knwon pipelines) - still using avj and JSONnata.</li>
+										<li><a href="https://www.npmjs.com/package/graphql">graphql</a> - a query language for APIs (microservices - via nest above), created by Facebook - to fetch data across multiple sources</li>
+									</ul>
+								</p>
+						</div>
+						</section>
 
-					</div>
+				</div>
 
 
 				<!-- Footer -->
