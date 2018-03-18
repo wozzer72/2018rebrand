@@ -151,18 +151,58 @@ git remote add origin https://github.com/wozitech/wit-serve.git</code></pre>
 	
 										<tr>
 											<td>8</td>
-											<td>Add, commit files back to github (<code>set-upstream</code> option only required on first push):<br/>
+											<td>Customise the generated <code>README.md</code> file.</td>
+										</tr>
+
+										<tr>
+											<td>9</td>
+											<td>Add, commit files back to github (<code style="background: initial; margin: initial; padding: initial">set-upstream</code> option only required on first push):<br/>
 												<pre><code>git add --all
 git commit -m "Initial Commit"
 git push --set-upstream origin master</code></pre>
 											</td>
 										</tr>
 									</tbody>
-									<tfoot>
-										<tr>
-										</tr>
-									</tfoot>
 								</table>
+
+								<header class="major">
+									<h2>Integrating wit-domain</h2>
+								</header>
+								<p><code>wit-domain</code> is a private NPM module in github with common code shared to all wit projects.</p>
+								<div class="table-wrapper">
+									<table class="alt">
+										<thead>
+											<tr>
+												<th>Step</th>
+												<th>Description</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>1</td>
+												<td>Install the wit-domain module from github<br/>
+													<pre><code>npm install --save git://github.com/wozitech/wit-domain.git</code></pre>
+												</td>
+											</tr>
+											<tr>
+												<td>2</td>
+												<td>Test the access to wit-domain with the
+													<code style="background: initial; margin: initial; padding: initial">printMsg</code>
+													function. In <code style="background: initial; margin: initial; padding: initial">app.controller.js</code> add:<br/>
+													<pre><code>nprintMsg('Hello World!', 'debug');</code></pre>
+												</td>
+											</tr>
+											<tr>
+												<td>3</td>
+												<td>Test the app, by opening a browser at:<br/>
+													<pre><code>http://localhost:3000</code></pre>
+													Expect to see "Hello World!" written to console, prefix with [DEBUG]. <code>&lt;CTRL&gt;&lt;C&gt;</code> to quit.
+												</td>
+											</tr>
+		
+										</tbody>
+									</table>
+		
 							</div>
 						</div>
 					</section>
