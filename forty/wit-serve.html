@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>wit-serve</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+				<header id="header">
+					<a href="index.html" class="logo"><strong>WOZ</strong>iTech <span>Ltd</span></a>
+					<nav>
+						<a href="#menu">Menu</a>
+					</nav>
+				</header>
+
+				<!-- Menu -->
+				<nav id="menu">
+					<ul class="links">
+						<li><a href="aboutus.html">About Us</a></li>
+						<li><a href="technologies.html">Technologies</a></li>
+						<li><a href="projects.html">Projects</a></li>
+						<li><a href="2018.html">The Year of 2018</a></li>
+					</ul>
+					<ul class="actions vertical">
+						<li><a href="index.html" class="button special fit">Home</a></li>
+					</ul>
+				</nav>
+
+				<!-- Main -->
+				<div id="main" class="alt">
+
+					<!-- One -->
+					<section id="one">
+						<div class="inner">
+							<header class="major">
+								<h1>wit-serve</h1>
+								<p>Main server for all wit products.</p>
+								<ul class="actions">
+									<li><a target="_blank" href="https://github.com/wozitech/wit-serve" class="button next">Get the code</a></li>
+								</ul>
+							</header>
+							<p>
+								A <a href="https://nodejs.org/en/">nodejs</a> application running the <a href="https://nestjs.com/">nest.js</a> framework
+								for building efficient and scalable server side applications.
+							</p>
+							<p>
+								Provides licensing, authentication and federation to other wit services.
+								Licensing, authentication, caching et al are provided through modules.
+							</p>
+							<p>
+								Showcasing this project is:
+								<ul>
+									<li><a href="https://www.mongodb.com/">MongoDB</a> - document (JSON) storage for all licenses and accounts.</li>
+									<li><a href="https://code.visualstudio.com/">vscode</a> - my goto editor for web development, from the team @ Microsoft.</li>
+								</ul>
+
+								Dependencies:
+								<ul>
+									<li><code>node.js</code> - minimum of V8.x.x, which includes <code>npm</code></li>
+									<li><code>git</code> and a <code>github</code> account</li>
+								</ul>
+							</p>
+						</div>
+					</section>
+
+					<section id="two">
+						<div class="inner">
+							<header class="major">
+								<h2>Creating the Project</h2>
+							</header>
+							<div class="table-wrapper">
+								<table class="alt">
+									<thead>
+										<tr>
+											<th>Step</th>
+											<th>Description</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td>Install nest.js cli (scaffholding)<br/>
+												<pre><code>npm install -g @nestjs/cli</code></pre>
+											</td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td>Create the app<br/>
+												<pre><code>nest new wit-serve</code></pre>
+											</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>Build the app<br/>
+												<pre><code>cd wit-serve
+npm install</code></pre>
+											</td>
+										</tr>
+										<tr>
+											<td>4</td>
+											<td>Run the app<br/>
+												<pre><code>npm start</code></pre>
+											</td>
+										</tr>
+										<tr>
+											<td>5</td>
+											<td>Test the app, by opening a browser at:<br/>
+												<pre><code>http://localhost:3000</code></pre>
+												Expect to see "Hello World!". <code>&lt;CTRL&gt;&lt;C&gt;</code> to quit.
+											</td>
+										</tr>
+										<tr>
+											<td>6</td>
+											<td>Initialise as a new git repo and add the remote github repo:<br/>
+												<pre><code>git init
+git remote add origin https://github.com/wozitech/wit-serve.git</code></pre>
+											</td>
+										</tr>
+										<tr>
+											<td>7</td>
+											<td>Create a .gitignore file with node_modules:<br/>
+												<pre><code>cat .gitignore
+# Node modules
+/node_modules</code></pre>
+											</td>
+										</tr>
+	
+										<tr>
+											<td>8</td>
+											<td>Add, commit files back to github (<code>set-upstream</code> option only required on first push):<br/>
+												<pre><code>git add --all
+git commit -m "Initial Commit"
+git push --set-upstream origin master</code></pre>
+											</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+					</section>
+				</div>
+
+				<!-- Footer -->
+				<footer id="footer">
+					<div class="inner">
+						<ul class="icons">
+							<li><a target="_blank" href="https://github.com/wozzer72" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
+							<li><a target="_blank" href="https://www.linkedin.com/in/WarrenAyling/" class="icon alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						</ul>
+						<ul class="copyright">
+							<li>&copy; WOZ<i>iTech</i> 2018</li><li>Design: <a href="https://html5up.net">HTML5 UP (Forty)</a></li>
+						</ul>
+					</div>
+				</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
