@@ -64,18 +64,19 @@
 							</header>
 							<p>
 								This project has been in constant development for a few years now. It was the project that got me
-								started with node.js. It&apos;s a project I continue to use to learn new technologies. It's a WOZiTech
+								started with node.js and MongoDB. It is a project I continue to use to learn new technologies. It is a WOZiTech
 								product, hence the &quot;wit&quot; prefix; short for &quot;WOZiTech&quot;.
 							</p>
 							<p>
-								At its core is the Raspberry PI directly connected to a display device, typically a large TV; hence wit-pi. Content is
+								At its core is the Raspberry PI directly connected to a display device, typically a large TV; hence wit-pi. Content (data only) is
 								served to the PI, which is then displayed; hence wit-piDash (Dash is short for Dashboard).
 							</p>
 							<p>
-								Showcasing this project is:
+								Completely rewritten each time, showcasing this project is:
 								<ul>
-									<li>Raspberry PI - Model 2 or Model 3; running a minimal install of Raspbian with docker; this is wit-pi.</li>
+									<li>Raspberry PI -Model 3; running resin.io with docker; this is wit-pi.</li>
 									<li>electron/VueJS - docker container running the &quot;wit-Dash&quot; application; presents as a desktop application</li>
+									<li>SVG - rich text display</li>
 									<li>wit-piServe - docker container providing node.js docker application as the local web service to wit-Dash and connects to wit-serve, the WOZiTech central server to get and receive (push) content.</li>
 									<li>wit-piManager - docker container providing licensing of &quot;wit-pi&quot;, &quot;wit-piServe&quot; and &quot;wit-Dash&quot;, in addition to checking for and installing updates.</li>
 								</ul>
