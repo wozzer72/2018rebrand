@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>wit-piDash</title>
+		<title>wit-contentServe</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -40,18 +40,19 @@
 					</ul>
 				</nav>
 
-				<section id="banner" class="major" style="background-image: url('images/2018-corporare-official-wit-piDash.png');background-size: 450px 450px;">
+				<section id="banner" class="major"  style="background-image: url('images/2018-corporare-official-wit-contentServe.png');background-size: 450px 450px;">
 					<div class="inner">
 						<header class="major">
-							<h1>wit-piDash</h1>
+							<h1>wit-contentServe</i></h1>
 						</header>
 						<div class="content">
-							<p>Dynamic Content Dashboard</p>
+							<p>Content Service for all wit products</p>
+							<ul class="actions">
+								<li><a target="_blank" href="https://github.com/wozitech/wit-contentServe" class="button next scrolly">Get the code</a></li>
+							</ul>
 						</div>
 					</div>
 				</section>
-
-	
 
 				<!-- Main -->
 				<div id="main" class="alt">
@@ -63,36 +64,44 @@
 								<h1>Introduction</h1>
 							</header>
 							<p>
-								This project has been in constant development for a few years now. It was the project that got me
-								started with node.js and MongoDB. It is a project I continue to use to learn new technologies. Now
-								on its third re-incarnation, completely redeveloped,  is a WOZiTech product, hence the
-								 &quot;wit&quot; prefix; short for &quot;WOZiTech&quot;.
+								Provides content (data) for all <code>wit</code> products, significantly so for the <code>wit-dash</code> application. 
+							</p>
+						</div>
+
+						<div class="inner">
+							<header class="major">
+								<h1>Technologies</h1>
+							</header>
+							<p>
+								A <a href="https://nodejs.org/en/">nodejs</a> application running the <a href="https://nestjs.com/">nest.js</a> framework
+								for building standalone and/or horizontally scalable application with a GraphQL core service, with resolvers provides by
+								a set of local and/or remote microservices. The data store is provided by the excellent MongoDB.
 							</p>
 							<p>
-								At its core is the Raspberry PI directly connected to a display device, typically a large TV; hence wit-pi. Content (data only) is
-								served to the PI, which is then displayed; hence wit-piDash (Dash is short for Dashboard).
+								JWT tokens provided in `Authorization` header are used for both authentication and authorisation, ensuring protection
+								of data at all times. In the &apos;WOZiTech&apos; hosted environments, this provided through the 3rd party `Auth0` service.
+								For development and local test environments, a local token service is provided. 
 							</p>
 							<p>
-								wit-dash is the main application, running locally (within a docker container) and serving local content. Why run locally? Allow content
-								to continue to be server even without an Internet connection all the while maintaining licensing/subscription restrictions.
+								Data caching is provided within the GraphQL service to ensure fast and efficient access to relatively static content.
+							</p>
+							<p>
+								Creation, Update and Deletion of content is facilitated through GraphQL mutations, using an Event Sourcing approach with microservices.
+								GraphQL Subscriptions are provided allowing content to be fast tracked to end devices as content is created/updated,
+								facilitated once again through the Event Sourcing approach.
 							</p>
 							<p>
 								Showcasing this project is:
 								<ul>
-									<li>Raspberry PI -Model 3; running a customised FlintOS distribution with docker; this is wit-pi.</li>
-									<li>A local electron/VueJS - docker container running the &quot;wit-dash&quot; application; presents as a desktop application.</li>
-									<li>HTML5 - rich text display</li>
-									<li><code>wit-piServe</code> - docker container hosting wit-dash application as the local web service to wit-dash and connects to wit-contentServe, the WOZiTech central content server to get content (poll and notification).</li>
-									<li><code>wit-piManager</code> - docker container managing licensing of &quot;wit-pi&quot;, &quot;wit-piServe&quot; and &quot;wit-dash&quot;, in addition to checking for and installing updates (OS, security and application).</li>
+									<li><a href="https://www.mongodb.com/">MongoDB</a> - document (JSON) storage for all licenses and accounts.</li>
+									<li><a href="https://nestjs.com/">nest.js</a>node.js framework for building efficient, reliable and scalable server-side applications.</li>
 								</ul>
-							</p>
 
-							<p>
-								Links to this project include:
+								Dependencies:
 								<ul>
-									<li><a href="wit-contentServe.html">wit-contentServe</a> - the primary data service for content.</li>
-									<li><code>wit-piSecure</code> - running in a Docker container on wit-pi, securely connects to wit-serve to manage PI identity.</li>
-									<li><code>wit-piGesture</code> - running in a Docker container on wit-pi (Raspberry PI Model 3) interacts with content using gestures captured via web camera.</li>
+									<li><code>node.js</code> - minimum of V8.x.x, which includes <code>npm</code></li>
+									<li><code>git</code> and a <code>github</code> account</li>
+									<li><code>vscode</code> - my goto Javascript, but in this case, typescript editor with plugins for GraphQL</li>
 								</ul>
 							</p>
 						</div>
@@ -101,12 +110,8 @@
 					<section id="two">
 						<div class="inner">
 							<header class="major">
-								<h2>Creating the Project</h2>
+								<h2>Creating the Project - TBC</h2>
 							</header>
-							<p>TBC</p>
-							<ul class="actions">
-								<li><a href="wit-piDash.html" class="button next">itslf</a></li>
-							</ul>
 						</div>
 					</section>
 				</div>

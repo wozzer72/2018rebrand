@@ -90,31 +90,6 @@
 					-->
 						<section id="two" class="spotlights">
 							<section>
-								<a href="generic.html" class="image">
-									<img src="images/graph-database-data-modeling.jpg" alt="graphql model" data-position="center center" />
-								</a>
-								<div class="content">
-									<div class="inner">
-										<header class="major">
-											<h3>Testing a Data Model is &apos;Fit for Purpose&apos; using microservice and GraphQL</h3>
-										</header>
-										<p>
-											A recent (circa 2018) contract has me working on data driven microservice architecure; this is where the data is king and the data determines how
-											the enterprise must respond. While evolving the model, to demonstrate the model was satisfying the requirements, I was creating examples manually and
-											validating against JSON Schema (using <a target="_blank" href="https://www.npmjs.com/package/ajv">avj</a>) and then transforming those
-											examples to another formats (using <a target="_blank" href="https://www.npmjs.com/package/jsonata">JSONata</a>) and revalidating.
-										</p>
-										<p>
-											This project uses node.js and GraphQL, with Alpaca, to help demonstrate a data model is&apos;Fit for Purpose&apos;.
-										</p>
-										<ul class="actions">
-											<li><a href="data-model-testing.html" class="button">Learn more</a></li>
-										</ul>
-									</div>
-								</div>
-							</section>
-
-							<section>
 								<a href="wit-serve.html" class="image">
 									<img src="images/2018-corporare-official-wit-serve.png" alt="wit-serve image" data-position="top center" />
 								</a>
@@ -124,8 +99,11 @@
 											<h3>wit-serve</h3>
 										</header>
 										<p>
-											The corerstone of all wit products, running on node.js using the nest.js framework,
-											providing all licensing and authentication, and federating access to all other wit services.
+											The cornerstone of all wit products, this is a suite of serverless microservices,
+											providing a common set of services across all wit products including, but not limited to, 
+											licensing, authentication &amp; authorisation, application updates/upgrades, notifications,
+											access to 3rd party services, such as, news and weather, billing, payments, account management,
+											registration et al.
 										</p>
 										<ul class="actions">
 											<li><a href="wit-serve.html" class="button">Learn more</a></li>
@@ -160,6 +138,26 @@
 									</div>
 								</div>
 							</section>
+
+							<section>
+								<a href="wit-piDash.html" class="image">
+									<img src="images/2018-corporare-official-wit-contentServe.png" alt="wit-contentServe image" data-position="top center" />
+								</a>
+								<div class="content">
+									<div class="inner">
+										<header class="major">
+											<h3>wit-contentServe</h3>
+										</header>
+										<p>
+											For content, rich data is key. Rather than a confusing set of APIs/services to retrieve and updated content,
+											<code>wit-contentService</code> is a centralised GraphQL service with access to data protected through JWT token.
+										</p>
+										<ul class="actions">
+											<li><a href="wit-contentServe.html" class="button">Learn more</a></li>
+										</ul>
+									</div>
+								</div>
+							</section>
 						</section>
 
 						<!--
@@ -181,8 +179,7 @@
 				<footer id="footer">
 					<div class="inner">
 						<ul class="icons">
-							<li><a target="_blank" href="https://github.com/wozzer72" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
-							<li><a target="_blank" href="https://www.linkedin.com/in/WarrenAyling/" class="icon alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a target="_blank" href="https://github.com/wozitech" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
 						</ul>
 						<ul class="copyright">
 							<li>&copy; WOZ<i>iTech</i> 2018</li><li>Design: <a href="https://html5up.net">HTML5 UP (Forty)</a></li>
