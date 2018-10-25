@@ -47,9 +47,9 @@
 						</header>
 						<div class="content">
 							<p>Main server for all wit products.</p>
-							<ul class="actions">
+							<!--<ul class="actions">
 								<li><a target="_blank" href="https://github.com/wozitech/wit-serve" class="button next scrolly">Get the code</a></li>
-							</ul>
+							</ul>-->
 						</div>
 					</div>
 				</section>
@@ -59,159 +59,79 @@
 
 					<!-- One -->
 					<section id="one">
-						<div class="inner">
+						<div class="inner" style="padding-top: 0px;">
 							<header class="major">
 								<h1>Introduction</h1>
 							</header>
 							<p>
-								A <a href="https://nodejs.org/en/">nodejs</a> application running the <a href="https://nestjs.com/">nest.js</a> framework
-								for building efficient and scalable server side applications.
+								The cornerstone of all <code>wit</code> products, this is a suite of serverless microservices,
+								providing a common set of services across all <code>wit</code> products including, but not limited to, 
+								licensing &amp; subscription, authentication &amp; authorisation, application updates/upgrades, notifications,
+								billing, payments, account management, registration, user management and device management, in
+								addition to federating access to 3rd party services, such as, transport, news &amp; weather.
 							</p>
 							<p>
-								Provides licensing, authentication and federation to other wit services.
-								Licensing, authentication, caching et al are provided through modules.
+								Serverless in deployment allowing to accommodate any dynamic load scenario as demand requires.
+								Cloud Provider Agnostic - AWS, Azure, GCP and/or public/private cloud Kubernetes deployment.
+							</p>
+							<p>
+								Fine grained Microservices, allowing for fine scaling by function, isolation between function
+								and benefitting from the best use of technologies specific to that function. WOZiTech promotes
+								node.js and MongoDB, but will not shy away from C#.net/SQLserver microservice if that is more
+								relevant for the task at hand.
+							</p>
+							<p>
+								Token-based API security built in from the ground up. No just authentication, but authorisation
+								too through client ids and claims. Auth0 by default, as the industry leading provider of security
+								as a platform, supporting extensive set of end user Identity management including, but not
+								limited to, social media (Facebook, github, google, Twitter), native client (Microsoft, Android, iPhone),
+								SPA web applications and significantly here, across APIs.
+							</p>
+							<p>
+								<code>wit-serve</code> itself is the gateway to the <code>wit</code> set of microservices, providing
+								federated access across all services including logging, profiling, circuit breaking, failover and,
+								where necessary, caching.
+							</p>
+							<p>
+								Develop and run functions locally to speed development and use best practice unit and integration tests.
+							</p>
+							<p>
+								Local deployment allows simple and effective development/testing of client applications &amp; services
+								that depend on these functions. But rather the developer having to create individual test environments
+								with each dependable function then deployed and consequently configure their client accordingly, all
+								<code>wit-serve</code> functions can be deployed to a local APIGW (nest.js single instance).
+
+								Alternatively, a <code>wit-serve</code> Docker image using 'localstack'.
 							</p>
 							<p>
 								Showcasing this project is:
 								<ul>
-									<li><a href="https://www.mongodb.com/">MongoDB</a> - document (JSON) storage for all licenses and accounts.</li>
-									<li><a href="https://code.visualstudio.com/">vscode</a> - my goto editor for web development, from the team @ Microsoft.</li>
-								</ul>
-
-								Dependencies:
-								<ul>
-									<li><code>node.js</code> - minimum of V8.x.x, which includes <code>npm</code></li>
-									<li><code>git</code> and a <code>github</code> account</li>
+									<li><a target="_blank" href="https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html">AWS APIGW</a> - industry leading serverless technology from AWS to expose lambda functions.</li>
+									<li><a target="_blank" href="https://aws.amazon.com/lambda/">AWS Lambda</a> - industry leading serverless technology from AWS.</li>
+									<li><a target="_blank" href="https://aws.amazon.com/step-functions/">AWS Step Functions</a> - Orchestrating AWS Lambda.</li>
+									<li class="tbc"><a target="_blank" href="https://github.com/kubeless/kubeless">kubeless</a> - Kubernetes answer to serverless functions.</li>
+									<li class="tbc"><a target="_blank" href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference-node">Azure Functions</a> - Microsoft&quot;s answer to serverless functions.</li>
+									<li class="tbc"><a target="_blank" href="https://cloud.google.com/functions/">GCP Functions</a> - Google&quot;s  answer to serverless functions.</li>									
+									<li>
+										<a target="_blank" href="https://github.com/localstack/localstack">localstack</a> - A fully functional local AWS cloud stack, but more specifically 
+											<a target="_blank" href="https://hub.docker.com/r/localstack/localstack/">localstack docker</a> - a runable docker image.
+									</li>
+									<li><a target="_blank" href="https://nestjs.com/">nest.js</a> - node.js framework brokering local (test) access to functions by client services.</li>
+									<li><a target="_blank" href="https://auth0.com/">Auth0</a> - never compromise on Identity; security from the ground up across all services.</li>
+									<li>
+										<a target="_blank" href="https://serverless.com/">Serverless Framework</a> - open source agnostic serverless development and deployment.
+										And following on from this, introducing:
+										<ul>
+											<li class="tbc"><a target="_blank" href="https://serverless.com/event-gateway">Serverless Event Gateway</a> - X-Cloud Providers event router.</li>
+											<li class="tbc"><a target="_blank" href="https://serverless.com/dashboard">Serverless Dashboard</a> - visualisation, monitoring &amp; management of serverless functions x-cloud providers.</li>
+										</ul>
+									</li>
 								</ul>
 							</p>
 						</div>
 					</section>
 
-					<section id="two">
-						<div class="inner">
-							<header class="major">
-								<h2>Creating the Project</h2>
-							</header>
-							<div class="table-wrapper">
-								<table class="alt">
-									<thead>
-										<tr>
-											<th>Step</th>
-											<th>Description</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>1</td>
-											<td>Install nest.js cli (scaffholding)<br/>
-												<pre><code>npm install -g @nestjs/cli</code></pre>
-											</td>
-										</tr>
-										<tr>
-											<td>2</td>
-											<td>Create the app<br/>
-												<pre><code>nest new wit-serve</code></pre>
-											</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>Build the app<br/>
-												<pre><code>cd wit-serve
-npm install</code></pre>
-											</td>
-										</tr>
-										<tr>
-											<td>4</td>
-											<td>Run the app<br/>
-												<pre><code>npm start</code></pre>
-											</td>
-										</tr>
-										<tr>
-											<td>5</td>
-											<td>Test the app, by opening a browser at:<br/>
-												<pre><code>http://localhost:3000</code></pre>
-												Expect to see "Hello World!". <code>&lt;CTRL&gt;&lt;C&gt;</code> to quit.
-											</td>
-										</tr>
-										<tr>
-											<td>6</td>
-											<td>Initialise as a new git repo and add the remote github repo:<br/>
-												<pre><code>git init
-git remote add origin https://github.com/wozitech/wit-serve.git</code></pre>
-											</td>
-										</tr>
-										<tr>
-											<td>7</td>
-											<td>Create a .gitignore file with node_modules:<br/>
-												<pre><code>cat .gitignore
-# Node modules
-/node_modules</code></pre>
-											</td>
-										</tr>
-	
-										<tr>
-											<td>8</td>
-											<td>Customise the generated <code>README.md</code> file.</td>
-										</tr>
 
-										<tr>
-											<td>9</td>
-											<td>Add, commit files back to github (<code style="background: initial; margin: initial; padding: initial">set-upstream</code> option only required on first push):<br/>
-												<pre><code>git add --all
-git commit -m "Initial Commit"
-git push --set-upstream origin master</code></pre>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-
-								<header class="major">
-									<h2>Integrating wit-domain</h2>
-								</header>
-								<p><code>wit-domain</code> is a private NPM module in github with common code shared to all wit projects.</p>
-								<div class="table-wrapper">
-									<table class="alt">
-										<thead>
-											<tr>
-												<th>Step</th>
-												<th>Description</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>1</td>
-												<td>Install the wit-domain module from github<br/>
-													<pre><code>npm install --save git://github.com/wozitech/wit-domain.git</code></pre>
-												</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td>Test the access to wit-domain with the
-													<code style="background: initial; margin: initial; padding: initial">printMsg</code>
-													function. In <code style="background: initial; margin: initial; padding: initial">app.controller.js</code> add:<br/>
-													<pre><code>nprintMsg('Hello World!', 'debug');</code></pre>
-												</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>Run the app<br/>
-													<pre><code>npm start</code></pre>
-												</td>
-											</tr>
-												<tr>
-												<td>4</td>
-												<td>Test the app, by opening a browser at:<br/>
-													<pre><code>http://localhost:3000</code></pre>
-													Expect to see "Hello World!" written to console, prefix with [DEBUG]. <code>&lt;CTRL&gt;&lt;C&gt;</code> to quit.
-												</td>
-											</tr>
-		
-										</tbody>
-									</table>
-		
-							</div>
-						</div>
-					</section>
 				</div>
 
 				<!-- Footer -->

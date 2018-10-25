@@ -24,6 +24,10 @@
 		li {
 			padding-left: 0.5em;
 		}
+		li.tbc {
+			padding-left: 0.5em;
+			color: darken(_palette(highlight), 15)
+		}
 
 		&.alt {
 			list-style: none;
