@@ -9,10 +9,10 @@
 		<title>wit-piDash</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 8]><script src="../assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="../assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../assets/css/ie8.css" /><![endif]-->
 	</head>
 	<body>
 
@@ -21,7 +21,7 @@
 
 				<!-- Header -->
 				<header id="header">
-					<a href="index.html" class="logo"><strong>WOZ</strong>iTech <span>Ltd</span></a>
+					<a href="../index.html" class="logo"><strong>WOZ</strong>iTech <span>Ltd</span></a>
 					<nav>
 						<a href="#menu">Menu</a>
 					</nav>
@@ -30,17 +30,16 @@
 				<!-- Menu -->
 				<nav id="menu">
 					<ul class="links">
-						<li><a href="aboutus.html">About Us</a></li>
-						<li><a href="technologies.html">Technologies</a></li>
-						<li><a href="projects.html">Projects</a></li>
-						<li><a href="2018.html">The Year of 2018</a></li>
+						<li><a href="../projects.html">Projects</a></li>
+						<li><a href="wit-server.html">wit-serve</a></li>
+						<li><a href="wit-contentServe.html">wit-contentServe</a></li>
 					</ul>
 					<ul class="actions vertical">
-						<li><a href="index.html" class="button special fit">Home</a></li>
+						<li><a href="../index.html" class="button special fit">Home</a></li>
 					</ul>
 				</nav>
 
-				<section id="banner" class="major" style="background-image: url('images/2018-corporare-official-wit-piDash.png');background-size: 450px 450px;">
+				<section id="banner" class="major" style="background-image: url('../images/2018-corporare-official-wit-piDash.png');background-size: 450px 450px;">
 					<div class="inner">
 						<header class="major">
 							<h1>wit-piDash</h1>
@@ -84,6 +83,9 @@
 									<li>HTML5 - rich text display</li>
 									<li><code>wit-piServe</code> - docker container hosting wit-dash application as the local web service to wit-dash and connects to wit-contentServe, the WOZiTech central content server to get content (poll and notification).</li>
 									<li><code>wit-piManager</code> - docker container managing licensing of &quot;wit-pi&quot;, &quot;wit-piServe&quot; and &quot;wit-dash&quot;, in addition to checking for and installing updates (OS, security and application).</li>
+
+									<li><a target="_blank" href="http://soulwire.github.io/fit.js/">fit.js</a> - a clever library to constrain web elements within other elements, with alignment. Used by <code>wit-dash</code> application (Vue.JS compatible?).</li>
+									<li><a target="_blank" href="http://lokijs.org/#/">LokiJS</a> - a fast in-memory document oriented data store for node.js, browser and cordova. Used here by <code>wit-secureContent</code> to hold transient content data.</li>									
 								</ul>
 							</p>
 
@@ -95,18 +97,6 @@
 									<li><code>wit-piGesture</code> - running in a Docker container on wit-pi (Raspberry PI Model 3) interacts with content using gestures captured via web camera.</li>
 								</ul>
 							</p>
-						</div>
-					</section>
-
-					<section id="two">
-						<div class="inner">
-							<header class="major">
-								<h2>Creating the Project</h2>
-							</header>
-							<p>TBC</p>
-							<ul class="actions">
-								<li><a href="wit-piDash.html" class="button next">itslf</a></li>
-							</ul>
 						</div>
 					</section>
 				</div>
@@ -126,13 +116,13 @@
 			</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../assets/js/skel.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="../assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../assets/js/main.js"></script>
 
 	</body>
 </html>

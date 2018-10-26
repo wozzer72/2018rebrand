@@ -9,10 +9,10 @@
 		<title>wit-serve</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 8]><script src="../assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="../assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../assets/css/ie8.css" /><![endif]-->
 	</head>
 	<body>
 
@@ -21,7 +21,7 @@
 
 				<!-- Header -->
 				<header id="header">
-					<a href="index.html" class="logo"><strong>WOZ</strong>iTech <span>Ltd</span></a>
+					<a href="../index.html" class="logo"><strong>WOZ</strong>iTech <span>Ltd</span></a>
 					<nav>
 						<a href="#menu">Menu</a>
 					</nav>
@@ -30,17 +30,16 @@
 				<!-- Menu -->
 				<nav id="menu">
 					<ul class="links">
-						<li><a href="aboutus.html">About Us</a></li>
-						<li><a href="technologies.html">Technologies</a></li>
-						<li><a href="projects.html">Projects</a></li>
-						<li><a href="2018.html">The Year of 2018</a></li>
+						<li><a href="../projects.html">Projects</a></li>
+						<li><a href="wit-piDash.html">wit-piDash</a></li>
+						<li><a href="wit-contentServe.html">wit-contentServe</a></li>
 					</ul>
 					<ul class="actions vertical">
-						<li><a href="index.html" class="button special fit">Home</a></li>
+						<li><a href="../index.html" class="button special fit">Home</a></li>
 					</ul>
 				</nav>
 
-				<section id="banner" class="major"  style="background-image: url('images/2018-corporare-official-wit-serve.png');background-size: 450px 450px;">
+				<section id="banner" class="major"  style="background-image: url('../images/2018-corporare-official-wit-serve.png');background-size: 450px 450px;">
 					<div class="inner">
 						<header class="major">
 							<h1>wit-serve</i></h1>
@@ -60,16 +59,19 @@
 					<!-- One -->
 					<section id="one">
 						<div class="inner" style="padding-top: 0px;">
-							<header class="major">
+							<header>
 								<h1>Introduction</h1>
 							</header>
 							<p>
-								The cornerstone of all <code>wit</code> products, this is a suite of serverless microservices,
+								The cornerstone of all <code>wit</code> products, this is a suite of serverless <a href="../technologies/microservices.html">microservices</a>,
 								providing a common set of services across all <code>wit</code> products including, but not limited to, 
 								licensing &amp; subscription, authentication &amp; authorisation, application updates/upgrades, notifications,
 								billing, payments, account management, registration, user management and device management, in
 								addition to federating access to 3rd party services, such as, transport, news &amp; weather.
 							</p>
+							<header>
+								<h2>Serverless Microservices</h2>
+							</header>
 							<p>
 								Serverless in deployment allowing to accommodate any dynamic load scenario as demand requires.
 								Cloud Provider Agnostic - AWS, Azure, GCP and/or public/private cloud Kubernetes deployment.
@@ -80,6 +82,9 @@
 								node.js and MongoDB, but will not shy away from C#.net/SQLserver microservice if that is more
 								relevant for the task at hand.
 							</p>
+							<header>
+								<h2>Secure From Ground Up</h2>
+							</header>	
 							<p>
 								Token-based API security built in from the ground up. No just authentication, but authorisation
 								too through client ids and claims. Auth0 by default, as the industry leading provider of security
@@ -87,11 +92,38 @@
 								limited to, social media (Facebook, github, google, Twitter), native client (Microsoft, Android, iPhone),
 								SPA web applications and significantly here, across APIs.
 							</p>
+							<p>All environments, except local development, enforce TLS (SSL) encryption to secure data in transit.</p>
+							<header>
+								<h2>API Gateway</h2>
+							</header>	
 							<p>
 								<code>wit-serve</code> itself is the gateway to the <code>wit</code> set of microservices, providing
-								federated access across all services including logging, profiling, circuit breaking, failover and,
-								where necessary, caching.
+								federated access across all discovered services including logging, profiling and, where necessary, caching.
 							</p>
+							<p>
+								API namespace is important; accessing microservices by portable URIs, across multiple environments. A
+								microservice must be resolvable by URI and RESTful actions (GET, POST, DELETE, PUT) upon that URI.
+							</p>
+							<p>
+								Separate namespaces are required for each environment. To allow for common TLS (SSL) certificates to
+								secure transport, the environment namespace must derive from a common namespace. All <code>wit</code>
+								microservices can be consumed by any <code>wit</code> product.
+							</p>
+							<p>
+								The namespace used for <code>wit</code> microservices will follow this pattern:
+								<blockquote><code>[http|https]://&lt;environment&gt;.api.wit.wozitech.click/&lt;service name&gt;</code></blockquote>
+							</p>
+							<p>
+								Different client platforms have different API interaction needs. An SPA web application will invoke an microservice API
+								differently to that of an Android client application. <code>wit-serve</code> is the 'Backend for the Frontend' providing
+								facades to deliver the API more efficiently.
+								<br/><br/>
+								As a gateway, <code>wit-serve</code> will employ good microservice patterns to ensure API availability, including, but not
+								limited to, circuit breaking and failover.
+							</p>
+							<header>
+								<h2>Local Development and Test</h2>
+							</header>	
 							<p>
 								Develop and run functions locally to speed development and use best practice unit and integration tests.
 							</p>
@@ -103,9 +135,22 @@
 
 								Alternatively, a <code>wit-serve</code> Docker image using 'localstack'.
 							</p>
+						</div>
+					</section>
+					<section id="one">
+						<div class="inner" style="padding-top: 0px;">
+							<header>
+								<h1>Showcase</h1>
+							</header>	
 							<p>
-								Showcasing this project is:
+								Showcasing in this project is:
 								<ul>
+									<li><a target="_blank" href="https://www.npmjs.com/package/lambda-framework">Lambda Framework</a> - despite its name, this is a Javascript API for abstracting serverless web applications for any provider (common cloud or custom).</li>
+									<li><a target="_blank" href="https://github.com/middyjs/middy">middy</a> - lightweight middleware engine for AWS Lambda functions.</li>
+
+									<li><a target="_blank" href="https://konghq.com/">Kong</a> - the modern day API Gateway, along with <a target="_blank" href="https://hub.docker.com/_/kong/">Docker Kong</a> = a Docker runable image of Kong (requires external Cassandra/PostgreSQL instance).</li>
+									
+										
 									<li><a target="_blank" href="https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html">AWS APIGW</a> - industry leading serverless technology from AWS to expose lambda functions.</li>
 									<li><a target="_blank" href="https://aws.amazon.com/lambda/">AWS Lambda</a> - industry leading serverless technology from AWS.</li>
 									<li><a target="_blank" href="https://aws.amazon.com/step-functions/">AWS Step Functions</a> - Orchestrating AWS Lambda.</li>
@@ -149,13 +194,13 @@
 			</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../assets/js/skel.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="../assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../assets/js/main.js"></script>
 
 	</body>
 </html>
