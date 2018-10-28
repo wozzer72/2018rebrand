@@ -112,7 +112,8 @@
 								limited to, social media (Facebook, github, google, Twitter), native client (Microsoft, Android, iPhone),
 								SPA web applications and significantly here, APIs.
 							</p>
-							<p>All environments, except local development, enforce TLS (SSL) encryption to secure data in transit.</p>
+							<p>All environments, except local development, enforce TLS (SSL) encryption to secure data in transit, passing JWT
+								in the HTTP Authorization header.</p>
 							<header>
 								<h2>API Gateway</h2>
 							</header>	
@@ -125,8 +126,10 @@
 								microservice must be resolvable by URI and RESTful actions (GET, POST, DELETE, PUT) upon that URI.
 							</p>
 							<p>
-								Although microservices can be platform agnostic, <code>wit-serve</code> is deployed to the AWS platform, and consequently
-								only one root domain is required for the namespace to resolve <code>wit-serve</code> microservices.
+								Although microservices can be platform agnostic, all <code>wit</code> microservices are deployed to the AWS platform.
+								This however has little sigificance, because as an API gateway, the deployment of <code>wit-serve</code>
+								only is significant; all <code>wit</code> microservices, although individually directly accessible are accessed
+								via this gateway. Consequently only one root domain is required for the namespace to resolve <code>wit-serve</code> microservices.
 								<br/><br/>
 								But separate namespaces are required for each environment. To allow for common TLS (SSL) certificates to
 								secure transport, the environment namespace must derive from a common namespace. All <code>wit</code>
@@ -135,6 +138,10 @@
 							<p>
 								The namespace used for <code>wit</code> microservices will follow this pattern:
 								<blockquote><code>[http|https]://&lt;environment&gt;.api.wit.wozitech.click/&lt;service name&gt;</code></blockquote>
+
+								It is noted that by including the environment within the root namespace, each environment &apos;can&apos; itself be deployed
+								to separate cloud providers; for example, production to AWS, acceptance to Azure and regression to GCP. All that is required
+								is a little cleverness to manage the sub-domains across cloud providers.
 							</p>
 							<p>
 								Different client platforms have different API interaction needs. An SPA web application will invoke an microservice API

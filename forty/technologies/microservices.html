@@ -177,7 +177,47 @@
 						<header class="major">
 							<h2>Best Choice of Technologies</h2>
 						</header>
-						<p>Summary on choosing the best choice of technology for the right job but always built on top of RESTful style protocol.</p>
+						<p>
+							The IT industry is <i>blessed</i> with a multitude of technologies, each with their own evangelists and practioners.
+							Some argue why there are so many different technologies and arguments have ensued whilst weighing up one
+							technology over another with facts and passion. Some argue the birth of some technology is unnecessary. If you
+							have one web server, why do you need another? If you have one computer language, why another? To counter
+							the last argument, consider if you will a hardware store and the choice of screwdrivers available; surely, if you want just
+							one screwdriver, why are their hundreds of screwdrivers to choice from?
+						</p>
+						<p>
+							But projects struggle to cope with a multitude different technologies; often limitations have been knowingly imposed based on the choice
+							of technology made at the start of a project/product. With multiple technologies you have issues on skills availability,
+							deployment and integration, especially when creating large complex applications with production-level deployment.
+							Service Oriented Architecture (SOA) came
+							to solve the issue of heterogenous application environments by integrating disparate applications (components) with an
+							Enterprise Service Bus (ESB) or Broker (centralised/federated integration). You could continue to invest in legacy
+							monolithic applications, yet build new more efficient web interfaces with data analytics and user profiling services.
+						</p>
+						<p>
+							But SOA is complex and requires highly skills architects and designers, and requires the deployment and support of
+							a platform on which to run SOA with the integration of that SOA platform with service endpoints (new and legacy
+							alike). It requires a team of highly skilled engineers to run just the SOA platform itself.
+						</p>
+						<p>
+							With the rise of containers over the past years, fueled by kuberenetes and now
+							capable approach of application deployment as containers, support for diverse technologies on consolidated platforms
+							has never been easier. With a <i>docker image</i> you can quickly introduce services to your platform from both
+							internal and external sources.
+						</p>
+						<p>Microservices have segued from traditional SOA and pure docker solutions by continuing
+							to promote best choice of technology but simplifying implementation by adopting the ubiquitous web protocol.
+							
+							The traditional ESB with its plethora of adaptors to connect to new and legacy applications/data stores and its complexity?
+							Gone. Every service is a simple web endpoint.
+							<br/><br/>
+							Database connectors (PostgreSQL, MySQL/MariaDB, SQLServer, DB2), messaging connectors (CICS, MQSeries, JMS),
+							email (pop, imap, smtp). All gone.
+							<br/><br/>
+							Proprietary scaling and failover solutions. Gone. Replaced with well understood http load balancing.
+							<br/><br/>
+							Proprietary security solutions. Gone. Replaced with TLS (SSL) and their certificates.
+						</p>
 					</div>
 				</section>
 
@@ -186,37 +226,190 @@
 						<header class="major">
 							<h2>Scaling</h2>
 						</header>
-						<p>Summary on scaling characteristics</p>
+						<p>
+							Scaling is the ability to grow an application as demand is imposed on the application.
+						</p>
+						<p>Traditional methods were focused on vertical scaling (buy a bigger/faster box; physical or virtual).
+							More dyanamic is horizontal scaling; two, three, four or more boxes (phyical or virtual). Horizontal scaling requires balancing
+							load across each instance. Balancing algorithms like, round-robin, random, least-connection (used) and least-load (weighted response time)
+							are used to spread incoming connections. Horizontal scaling has the added bonus of failover and resiliency.  But to benefit from
+							horizontal scaling, your application needs to be aware. Moreso, you need to handle state across multiple instances; get 
+							this wrong and any benefit of horizontal scaling is lost.
+						</p>
+						<p>
+							With the introduction of cloud computing, moreso, public clouds, can adaptive load balancing; scale up yet also scale down, based
+							on incoming demand. You then only pay for what you used. Large boundaries were placed on the increments/decrements owing to
+							the time it took to start a virtualised server or stop. With Docker and containers, it got quicker to start and stop; scale up 
+							and scale down became the norm. But it was still pretty much full application instances that were being scaled horizontally.
+						</p>
+						<p>
+							With the prevelance of docker came kuberenetes; managed instances. It is now easy to provision 10 of those, 20 of them and 5 of these.
+							What are &quot;those, them and these&quot;? They are instances of part of the application; 10 web servers, 20 app servers and 5 database servers.
+							As demand increases, those 10 web servers and 20 app servers are scaled with different ratios depending on the applicaton resources
+							consumed. But break the application into components. &quot;those, them and these&quot; now become 20 instances of order services,
+							10 instances of payment servies and 5 instances of product cache. But not just three ratios to manage, you now have tens/hundreds of
+							different ratios (application clusters) to scaling up and scaling down with different cadence based on application demand. This is can be
+							visualised as a &apos;Murmuration of Starlings&apos;; a swarm of birds sweeping and turning in the sunset sky with individuals peeling
+							off and joining at different times. But this being a set of containers not starlings, and the sky being a kubernetes cluster.
+						</p>
+						<p>
+							Microservices is taking this approach to the extreme. Each microservice can be scaled up/down. The fine grained microservices
+							being more functions than components. Moreso than before, the microservice must be packaged & deployed in a way to benefit from this
+							scaling approach. The microservice needs to be packaged as a Docker template/image.
+						</p>
+						<p>
+							Serverless microservices simply takes away any need to manage the provision of resources but it does restrict the technology that
+							can be provisioned based on that made available by the cloud provider. Although note, AWS serverless functions (lambda) does support
+							the notion of a docker image/template as the ultimate "get out clause".
+						</p>
 					</div>
 				</section>
 
 				<section id="Not">
 					<div class="inner">
 						<header class="major">
-							<h2>Microservices are not</h2>
+							<h2>Microservices Are Not ...</h2>
 						</header>
-						<p>Sumamry on what microservices are not. Unlike SOA, they are fine grained and do not set about to encourage reuse; they have no specific contract.
-							No dependencies between services and no &quot;managed&quot; orchestration between services. No platform specific.</p>
 						<p>
-							What do we mean by &quot;unmanaged orchestration&quot;
+							As significant as it is in defining what microservices are, it is necessary to describe what they are not.
+						
+							Unlike SOA, microservices are fine grained (SOA tends to course grained services) and do not set about to encourage reuse.
+							Microservices have no formal contract. There are no dependencies between microservices and no &quot;managed&quot;
+							orchestration between microservices. Microservices depend on no specific runtime platform specific.
 						</p>
+						<h3>What do we mean by &quot;unmanaged orchestration&quot;?</h3>
 						<p>
-							What do we mean by &quot;not platform specific&quot;?
+							We are not saying that microservices are not part of
+							a larger business process, as typified of a service environment. But their involvement in such is directed by
+							the consumer of the microservice. There is no underlying abstraction coordinating their involvement.
 						</p>
+						<h3>What do we mean by &quot;not platform specific&quot;?</h3>
 						<p>
-							What do we mean by &quot;not encouraging reuse&quot;?
-						</p>
-						<p>
-							What do we mean by &quot;no specific contract&quot;?
-						</p>
-						<p>
-							What do we mean by &quot;fine grained&quot;? Microservices are constructed at function level whereas SOA is component level.
-							A component will have many functions composed from many actions, whereas a function has a single action.
+							The very essence of microservices is they leverage the
+							ubiquitous web protocol. Even mainframes can support the web protocol. All modern platforms support the web protocol.
+							There is no open source/community (e.g. mulesoft/fuse) or expensive commercial (IBM Message WebBroker, Tibco, Oracle)
+							SOA platform. You can use different platforms in each of your environments. You can use platforms supported natively
+							by cloud providers and within the same environment spread those microservices across multiple providers (providing
+							resilience from that cloud provider). Because microservices are not constrained by any platform, your
+							3rd party suppliers/agencies are free from any particular choice you have made.
+							
 							<br/><br/>
+							Of course, if you already have a SOA platform, it can host microservices (all SOA platforms will support web protocol).
+							For a SOA that is heavy on message, it is worth highlighting <a target="_blank" href="http://jmesnil.net/stomp-websocket/doc/">STOMP
+							over WebSockets</a> can be used for a bidirectional messaging interface over http as a method of integrating SOA with microservices.
+
+							<br/><br/>
+							By not being dependent on any specific platform, not are are you free to choose, you are free to change! Make a choice and run with
+							it. But if it&quot;s no longer working, then change your platform of choice. And yes, you are free to change your 3rd parties too.
 						</p>
+						<h3>What do we mean by &quot;not encouraging reuse&quot;?</h3>
 						<p>
-							Through less focus on contract, reuse and with a focus on function not component, less effort is spent designing microservices.
-							This makes microservices more suited to an agile development lifecycle, than that imposed by a Service Oriented Architecture.
+							With a SOA implementation, much time is invested upfront to decompose business domains into reusable set of services. Those services (components) are like mini-applications; where it makes sense to consolidate a particular business function,
+							it is grouped within a service (component).
+							
+							<br/><br/>
+							By name alone (micro), microservices should be small, function (not component) based services.
+							It is not important if they are used in more than one place; what is important is that the function they perform has been isolated.
+							As noted above, to protect service availability, if making a substantial change to an existing microservice you should
+							be encouraged to create a new microservice.
+
+							<br/><br/>
+							But there is nothing wrong if indeed the microservice is (re)used in many different scenarios.
+						</p>
+						<h3>What do we mean by &quot;no formal contract&quot;?</h3>
+						<p>
+							To encourage interoperability between services in a SOA implementation, it is necessary to focus on the contract
+							of the service. That contract being a description of what features that services provides. The contract
+							is then registered allowing that service to become discoverable.
+
+							Such a constract would be based on standardised contracts; remember the WS* standards (WS-Security, WS-Transer, WS-Addressing, ...).
+							These contracts are verbose and complex covering a great number of use scenarios. Implementing a service conforming to such
+							standards requires a lot of effort.
+
+							<br/><br/>
+							That is not to say that microservices do not have a contract. They have a service definition (typically
+							RESTful style well-documented using swagger). But rather than based on some complex standard, the service
+							definition (contract) is specific to the task (function) at hand.
+							
+							<br/><br/>
+							Because of this absence of formalised contract and abstraction orchestration, it is necessary that the
+							consumer (client) is specific about version of microservice it uses.
+						</p>
+						<h3>What do we mean by &quot;fine grained&quot;?</h3>
+						<p>
+							Microservices are constructed at function level whereas SOA is component level.
+							A component will have many functions, whereas a microservice has a single (maybe two/three) function.
+							A microservice exhibits "high cohesion" (everything within the microservice is specifically related).
+							<br/><br/>
+							A large application could have been composed of 10 or 20 SOA services, compared to 100 or 200 microservices.
+						</p>
+					</div>
+				</section>
+
+				<section id="Challenges">
+					<div class="inner">
+						<header class="major">
+							<h2>Challenges</h2>
+						</header>
+						<p>
+							Microservices are not the silver bullet; they are simply an architectural approach/style and as with any such approach
+							they have limitations and deficiencies.
+						</p>
+						<h3>CI/CD</h3>
+						<p>
+							Function-level deployment implies that in any sizable project you will have many microservices and you can expect
+							to change each many times over its lifetime. You will also want to get the changes into live operations as quick as you can.
+
+							For that, you need a good <a href="https://semaphoreci.com/blog/2017/07/27/what-is-the-difference-between-continuous-integration-continuous-deployment-and-continuous-delivery.html">
+							Continuous Integration, Continuous Deployment and Continuous Delivery</a> solution.
+
+							As soon as code is committed, automated unit and integration tests are performed, automated builds and deployments
+							into acceptance and regression tests environments and automated (ungated yet managed - canary style, green/blue) delivery into
+							live service all with the ability to regress/recall at anytime if any unwanted side effects are observed.
+						</p>
+						<h3>Agile Delivery</h3>
+						<p>
+							Through less focus on contract, reuse and with a focus on function not component, less effort is spent designing microservices
+							with good effort spent on Implementing microservices on the premise that 'anything can change'.
+							This makes microservices more suited to an agile development lifecycle.
+							
+							<br/><br/>
+							Yes, you could spend months decomposing your problem domain, designing and specifying all such functions, then coding, building and deploying
+							such functions and then finally constructing business logic from the deployed functions. Just like SOA.
+							Moreso, you should simply develop your microservices (functions) whilst developing business logic; there is no formal contract for the
+							microservice.
+
+							<br/><br/>
+							Knowing only what you know at time, and doing only what you know at the time; this is agile delivery.
+						</p>
+						<h3>Monitoring</h3>
+						<p>
+							With tens/hundreds of microservices deployed, with runtime isolation (see above) across multiple business proceses
+							you have a complex function runtime with independent runtime characteristics.
+							
+							Traditional tools to profiling and optimising those characteristics do not fit well when the services are distributed
+							within a platform or worse still across different platforms.
+
+							Without a good monitoring solution in place, you&apos;re assuming everything we be ok and when it is not, you'll be
+							frantically or worse still, haphazardously, hacking away to identity and then fix the problem. You are likely to make
+							the problem worse before it becomes better.
+
+							<i>But what are the solutions? Still in infancy but some stop players already emerging:
+								<ul>
+									<li><a target="_blank" href="https://serverless.com/dashboard">serverless framework dashboard</a></li>
+									<li><a target="_blank" href="https://zipkin.io/">Zipkin</a></li>
+									<li><a target="_blank" href="https://opentracing.io/">OpenTracing</a></li>
+
+									
+
+									<li class="tbc"><a target="_blank" href="https://aws.amazon.com/xray/">AWS X-Ray</a> - proprietary to AWS of course</li>
+									<li class="tbc"><a target="_blank" href="https://aws.amazon.com/xray/">AWS X-Ray</a> - proprietary to AWS of course</li>
+
+									<li class="tbc"><a target="_blank" href="https://www.datadoghq.com/dg/apm/microservices">Datadog</a></li>
+									<li class="tbc"><a target="_blank" href="https://www.appdynamics.com/app-iq-platform/microservices-iq/">AppDynamics</a></li>
+								</ul>
+
+							</i>
 						</p>
 					</div>
 				</section>
