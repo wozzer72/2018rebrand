@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>WOZiTech Limited - microservices</title>
+		<title>microservices</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="apple-touch-icon" sizes="57x57" href="../favicon/apple-icon-57x57.png">
@@ -48,11 +48,9 @@
 			<!-- Menu -->
 			<nav id="menu">
 				<ul class="links">
-					<li><a href="../aboutus.html">About Us</a></li>
-					<li><a href="../technologies.html">Technologies</a></li>
-					<li><a href="../projects.html">Projects</a></li>
-					<li><a href="../2018.html">The Year of 2018</a></li>
-				</ul>
+						<li><a href="../technologies.html">Technologies</a></li>
+						<li><a href="../tokenSecurity.html">Token API Security</a></li>
+					</ul>
 				<ul class="actions vertical">
 					<li><a href="../index.html" class="button special fit">Home</a></li>
 				</ul>
@@ -66,21 +64,111 @@
 						<h1>Microservices</h1>
 					</header>
 					<div class="content">
-						<p>Introduction to Microservices</p>
+						Overview of Microservices
 					</div>
 				</div>
 			</section>
 
-			<!-- Main -->
 			<div id="main">
-
+				<section id="introduction">
+						<div class="inner">
+							<header>
+								<h1>Introduction</h1>
+							</header>
+							<p>
+								WOZiTech promotes the use of Microservices to break down complex applications into
+								easily maintained, deployed and managed components, with use of best breed technologies for each
+								service (or in the case of WOZiTech projects, demonstration of new technologies by a given service)
+								with scale and security built-in.
+							</p>
+							<p>
+								Microservices is an IT buzzword, but what are microservices? Let&apos;s demistify them here.
+							</p>
+						</div>
+					</section>
+		
 				<section id="isolation">
 					<div class="inner">
 						<header class="major">
 							<h2>Isolation</h2>
 						</header>
-						<p>Summary on development, deployment and data isolation & abstraction capabilities.</p>
-						<p>There is a caveat though on how much isolation.</p>
+						<h3>Runtime</h3>
+						<p>
+							First, and foremost, microservices are isolated from each other at runtime. A failure in one service
+							does not impact on another service. This applies not just across different services but equally each
+							instance of the same service. This latter isolation is where &quot;serverless functions&quot; come
+							into their own. To isolate each instance of a service, if a system-level error occurs in a service instance then
+							that service instance should be rejected and a new instance of that service started to backfill.
+						</p>
+						<h3>Deployment</h3>
+						<p>
+							Second, microservices are isolated from each other during deployment. A failure in one service deployment
+							does not impact upon other services, during or after the deployment. More than just each service can be deployed
+							independently, each service can be deployed to different targets/platforms.
+						</p>
+						<h3>Packaging</h3>
+						<p>
+							Third, microservices are isolated from each other through packaging. A change in one service does not impact
+							upon other services. A change in one service which consequently requries deployment, does not require the
+							re-deployment of other services.
+							<br/><br/>
+							Isolated packaging ensures the smallest scope of deployment and consequently, the smallest scope of change. Low
+							level of changes encourages high levels of availability.
+						</p>
+						<p>
+							Consider also service maturity; where the microservice is extended over time.
+
+							Versioning of APIs are common practice; a typical node application uses npm
+							to manage 3rd part libraries, all at specific versions within package.json. Every microservice should be
+							versioned and every client should define the version of API to which they are subscribing to, even if that
+							client declaration is "latest" (version).
+							<br/><br/>
+							A stable service is one that stable clients will depend upon. If having to make changes to a stable service
+							consider first creating and deploying a new service with those chamges, thus isolating the existing stable service.
+							Over time as this new service establises itself and itself becomes stable, consider then whether to
+							merge it back to the original service (as a new verion of).
+						</p>
+						<h3>Data</h3>
+						<p>
+							And finally, it is well accepted that microservices should own their data in its entirety. Each microservice
+							should have its own data store; that data store chosen specifically for the type of data it owns (or abstracts
+							in the case of integrating services).
+							<br/><br/>
+							A caching microservice would benefit from fast storage, such as, redis/memcached. An analytics service would
+							benefit from a warehouse style store.
+							<br/><br/>
+							By having its own store of data and owning that store, each microservice is able to apply its own optimisations
+							for accessing that, safe that it does not impact other services.
+						</p>
+						<p>
+							But there is a playoff on how much isolation can be supported and this vary across projects and services.
+							<br/>
+							<i>Need to explore this one way in respect of </i>
+						</p>
+					</div>
+				</section>
+
+				<section id="Security" class="spotlights">
+					<div class="inner">
+						<header class="major">
+							<h2>Security Built-In</h2>
+						</header>
+						<p>
+							Not specific to microservices per se, but a mandatory characteristic as seen by WOZiTech, is that all
+							microservices should enforce security for all their APIs; even if that security is simply to "allow all".
+						</p>
+						<p>
+							There are many different approches to authentication (identity) and authorisation (approval); we shall shorten this to simply <i>A&amp;A</i>.
+							The fact that microservices are stateless implies A&amp;A must be performed on every call. For performance and isolation,
+							it is not ideal for any microservices to have to rely on an exteral lookup for A&amp;A resolution.
+						</p>
+						<p>
+							Token based A&amp;A is the recommended approach as the token assures identity (authentication) and contains all
+							information necessary for approval (authorisation).
+						</p>
+						<ul class="actions vertical">
+							<li><a href="tokenSecurity.html" class="button">Token Based Security</a></li>
+						</ul>
 					</div>
 				</section>
 
@@ -89,7 +177,7 @@
 						<header class="major">
 							<h2>Best Choice of Technologies</h2>
 						</header>
-						<p>Summary on choosing the best choice of technology for the right job.</p>
+						<p>Summary on choosing the best choice of technology for the right job but always built on top of RESTful style protocol.</p>
 					</div>
 				</section>
 
@@ -107,7 +195,29 @@
 						<header class="major">
 							<h2>Microservices are not</h2>
 						</header>
-						<p>Sumamry on what microservices are not. Unlike SOA, they are fine grained and do not encourage reuse. No dependencies between services and no orchestration between services.</p>
+						<p>Sumamry on what microservices are not. Unlike SOA, they are fine grained and do not set about to encourage reuse; they have no specific contract.
+							No dependencies between services and no &quot;managed&quot; orchestration between services. No platform specific.</p>
+						<p>
+							What do we mean by &quot;unmanaged orchestration&quot;
+						</p>
+						<p>
+							What do we mean by &quot;not platform specific&quot;?
+						</p>
+						<p>
+							What do we mean by &quot;not encouraging reuse&quot;?
+						</p>
+						<p>
+							What do we mean by &quot;no specific contract&quot;?
+						</p>
+						<p>
+							What do we mean by &quot;fine grained&quot;? Microservices are constructed at function level whereas SOA is component level.
+							A component will have many functions composed from many actions, whereas a function has a single action.
+							<br/><br/>
+						</p>
+						<p>
+							Through less focus on contract, reuse and with a focus on function not component, less effort is spent designing microservices.
+							This makes microservices more suited to an agile development lifecycle, than that imposed by a Service Oriented Architecture.
+						</p>
 					</div>
 				</section>
 
@@ -116,7 +226,7 @@
 						<div class="content">
 							<div class="inner">
 								<header class="major">
-									<h2>Introduction</h2>
+									<h2>Patterns</h2>
 								</header>
 								<p>Introduction to microservices patterns</p>
 								<ul class="actions">
@@ -172,9 +282,6 @@
 			<!-- Footer -->
 			<footer id="footer">
 				<div class="inner">
-					<ul class="icons">
-						<li><a target="_blank" href="https://github.com/wozitech" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
-					</ul>
 					<ul class="copyright">
 						<li>&copy; WOZ<i>iTech</i> 2018</li><li>Design: <a href="https://html5up.net">HTML5 UP (Forty)</a></li>
 					</ul>

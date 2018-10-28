@@ -9,6 +9,24 @@
 		<title>wit-serve</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="apple-touch-icon" sizes="57x57" href="../favicon/apple-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="../favicon/apple-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="../favicon/apple-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="../favicon/apple-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="../favicon/apple-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="../favicon/apple-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="../favicon/apple-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="../favicon/apple-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-icon-180x180.png">
+		<link rel="icon" type="image/png" sizes="192x192"  href="../favicon/android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="../favicon/favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+		<link rel="manifest" href="../favicon/manifest.json">
+		<meta name="msapplication-TileColor" content="#ffffff">
+		<meta name="msapplication-TileImage" content="../favicon/ms-icon-144x144.png">
+		<meta name="theme-color" content="#ffffff">
+
 		<!--[if lte IE 8]><script src="../assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="../assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="../assets/css/ie9.css" /><![endif]-->
@@ -79,18 +97,20 @@
 							<p>
 								Fine grained Microservices, allowing for fine scaling by function, isolation between function
 								and benefitting from the best use of technologies specific to that function. WOZiTech promotes
-								node.js and MongoDB, but will not shy away from C#.net/SQLserver microservice if that is more
+								node.js and MongoDB, but being tech agnostic and having a experience in a large number of tech,
+								WOZiTech will not shy away from say a &quot;C#.net/SQLserver&quot; microservice if that is more
 								relevant for the task at hand.
 							</p>
 							<header>
 								<h2>Secure From Ground Up</h2>
 							</header>	
 							<p>
-								Token-based API security built in from the ground up. No just authentication, but authorisation
-								too through client ids and claims. Auth0 by default, as the industry leading provider of security
-								as a platform, supporting extensive set of end user Identity management including, but not
+								<a href="../technologies/tokenSecurity.html">Token-based API security</a> built in from the ground up. Not
+								just authentication, but authorisation too through client ids, audiences and claims. Auth0 is preferred by
+								WOZitech, as the industry leading provider of security
+								as a platform, supporting extensive set of Identity Management scenarios including, but not
 								limited to, social media (Facebook, github, google, Twitter), native client (Microsoft, Android, iPhone),
-								SPA web applications and significantly here, across APIs.
+								SPA web applications and significantly here, APIs.
 							</p>
 							<p>All environments, except local development, enforce TLS (SSL) encryption to secure data in transit.</p>
 							<header>
@@ -105,7 +125,10 @@
 								microservice must be resolvable by URI and RESTful actions (GET, POST, DELETE, PUT) upon that URI.
 							</p>
 							<p>
-								Separate namespaces are required for each environment. To allow for common TLS (SSL) certificates to
+								Although microservices can be platform agnostic, <code>wit-serve</code> is deployed to the AWS platform, and consequently
+								only one root domain is required for the namespace to resolve <code>wit-serve</code> microservices.
+								<br/><br/>
+								But separate namespaces are required for each environment. To allow for common TLS (SSL) certificates to
 								secure transport, the environment namespace must derive from a common namespace. All <code>wit</code>
 								microservices can be consumed by any <code>wit</code> product.
 							</p>

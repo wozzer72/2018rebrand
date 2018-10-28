@@ -15,18 +15,24 @@
       <loc>http://www.wozitech-ltd.co.uk/technologies.html</loc>
    </url>
    <url>
+      <loc>http://www.wozitech-ltd.co.uk/technologies/microservices.html</loc>
+   </url>
+   <url>
+      <loc>http://www.wozitech-ltd.co.uk/technologies/tokenSecurity.html</loc>
+   </url>
+   <url>
       <loc>http://www.wozitech-ltd.co.uk/projects.html</loc>
    </url>
    <url>
       <loc>http://www.wozitech-ltd.co.uk/2018.html</loc>
    </url>
    <url>
-      <loc>http://www.wozitech-ltd.co.uk/wit-serve.html</loc>
+      <loc>http://www.wozitech-ltd.co.uk/projects/wit-serve.html</loc>
    </url>
    <url>
-      <loc>http://www.wozitech-ltd.co.uk/wit-piDash.html</loc>
+      <loc>http://www.wozitech-ltd.co.uk/projects/wit-piDash.html</loc>
    </url>
    <url>
-      <loc>http://www.wozitech-ltd.co.uk/wit-contentServe.html</loc>
+      <loc>http://www.wozitech-ltd.co.uk/projects/wit-contentServe.html</loc>
    </url>
 </urlset>
