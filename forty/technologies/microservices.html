@@ -329,19 +329,41 @@
 							<br/><br/>
 							That is not to say that microservices do not have a contract. They have a service definition (typically
 							RESTful style well-documented using swagger). But rather than based on some complex standard, the service
-							definition (contract) is specific to the task (function) at hand.
+							definition (contract) is specific to the task (function) at hand. With evolutionary development of the
+							microservice, this informal contract will change. That change should be via contract (interface specification
+							versioning).
+							
+							The WOZiTech preferred approach is with <a target="_blank" href="https://www.baeldung.com/rest-versioning">Media Type</a> versioning.
+							But be aware, when changing the Content-Type header, the client needs to be version aware and parse the
+							content type appropriately. For example, in the linked example, &quot;Content-Type: application/vnd.myname.v2+json&quot;
+							needs to be parsed (split on &apos;+&apos;) to resolve &quot;json&quot;. Web Browers (circa Oct2018) are
+							not aware, and consequently, if using your web browser to test results, they will not formally recognise JSON content.
 							
 							<br/><br/>
 							Because of this absence of formalised contract and abstraction orchestration, it is necessary that the
-							consumer (client) is specific about version of microservice it uses.
+							consumer (client) is specific about version of microservice it uses but also then when testing, the
+							"in use" contract is tested in isolation from the service logic (best tested with unit tests and mocking).
 						</p>
 						<h3>What do we mean by &quot;fine grained&quot;?</h3>
 						<p>
 							Microservices are constructed at function level whereas SOA is component level.
+							A large application could have been composed of 10 or 20 SOA services, compared to 100 or 200 microservices.
 							A component will have many functions, whereas a microservice has a single (maybe two/three) function.
 							A microservice exhibits "high cohesion" (everything within the microservice is specifically related).
 							<br/><br/>
-							A large application could have been composed of 10 or 20 SOA services, compared to 100 or 200 microservices.
+							A great article around microservices testing from <a target="_blank" href="https://medium.com/@danielbryantuk/microservice-testing-coupling-and-cohesion-all-the-way-down-b84dacf8cff0">
+								Daniel Bryant</a> describes the impact and consequence of coupling and cohesion, nicely summarised by the
+								image below.
+							<br/><br/>
+							<div class="12u">
+								<span class="image fit">
+									<a target="_blank" href="https://cdn-images-1.medium.com/max/800/1*tCfa0GweDvl2k3wQ74A8iQ.png">
+										<img class="opacity: 0.5; filter: alpha(opacity=50);"
+											src="../images/daniel-bryant-medium.com-microservice-testing-coupling-and-cohesion-all-the-way-down.png"
+											alt="Cohesion and Coupling diagram reproduced from https://medium.com/@danielbryantuk/microservice-testing-coupling-and-cohesion-all-the-way-down-b84dacf8cff0"/>
+									</a>
+								</span>
+							</div>
 						</p>
 					</div>
 				</section>
