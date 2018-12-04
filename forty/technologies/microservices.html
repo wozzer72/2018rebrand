@@ -127,6 +127,11 @@
 							consider first creating and deploying a new service with those chamges, thus isolating the existing stable service.
 							Over time as this new service establises itself and itself becomes stable, consider then whether to
 							merge it back to the original service (as a new verion of).
+							<br/><br/>
+							But ensure you always version your own microservices; even if this is just to track and audit the version that
+							is deployed, but because your microservice will be consumed by others and they should trust the version of
+							the microservice that they come to rely upon. And yes, logging the version that is being consumed is important
+							is wanting to be able to phase out old versions (you have know know which versions are in use and by which consumer).
 						</p>
 						<h3>Data</h3>
 						<p>
@@ -142,8 +147,22 @@
 						</p>
 						<p>
 							But there is a playoff on how much isolation can be supported and this vary across projects and services.
-							<br/>
-							<i>Need to explore this one way in respect of </i>
+							<br/><br/>
+							Especially when transitioning from a monolithic application or integrating with legacy applications (oh yes,
+							there are still many legacy billing, inventory and fulfilment applications out there), it will be necessary to
+							make tactical decisions to share a data store/legacy service. When doing so, be sure to have an exit strategy/lifecycle
+							for that service and be sure that the data/service it access is unique to it; this applies more with create/update services
+							than pure retrieval.
+							<br/><br/>
+							The purist principle of microservices "no share" can indeed suggest NO code reuse, such as, common logging, monitoring
+							authentication/authorisation functionality. There is no right or wrong answer, with benefits and drawbacks to both. A tactical
+							decision must be taken, but one that stems from an agreed (a documented) system design principle. If accepting the decision to
+							share code, ensure that code has its own lifecycle management (own repository, build and automated packaging) with
+							versioning. All microservices must be explicit in their use of versions.
+							<br/><br/>
+							To note, AWS has recently (circa Nov 2018) released <a href="https://wozitech.asuscomm.com/technologies/aws" target="_blank">Lambda Layers</a>;
+							the ability deploy common artifacs across functions. Versioning of the layer is implicit in the definition of the layer's ARN
+							 and the version is always incremented when deploying that layer.
 						</p>
 					</div>
 				</section>
@@ -195,7 +214,7 @@
 							monolithic applications, yet build new more efficient web interfaces with data analytics and user profiling services.
 						</p>
 						<p>
-							But SOA is complex and requires highly skills architects and designers, and requires the deployment and support of
+							SOA is complex and requires highly skills architects and designers, and requires the deployment and support of
 							a platform on which to run SOA with the integration of that SOA platform with service endpoints (new and legacy
 							alike). It requires a team of highly skilled engineers to run just the SOA platform itself.
 						</p>
@@ -221,7 +240,27 @@
 					</div>
 				</section>
 
-				<section id="Scaling">
+				<section id="AsSmallAs" class="spotlights">
+					<div class="inner">
+						<header class="major">
+							<h2>As Small as Can Be</h2>
+						</header>
+						<p>
+							Akin to the best choice of technology, as the name suggests, microservices should be as small as possible.
+						</p>
+						<p>
+							What is meant by small? Small here means "only essential" footprint. Include only what is needed:
+							<ul>
+								<li>When packaging for Lambda, use webpack and babel-polyfill to create a single JS file to package and upload.</li>
+								<li>When using docker images, start with the smallest runtimes: CoreOS or Alpine.</li>
+								<li>When encapsulating data, consider first a in-memory or embedded database (redis/SQLlite).</li>
+								<li>If needing a web/app server, use the lightest necessary; a simple function does not require a comprehensive node.js frameowrk like express/KOA/nest.js.</li>
+							</ul>
+						</p>
+					</div>
+				</section>
+
+				<section id="Scaling"  class="spotlights">
 					<div class="inner">
 						<header class="major">
 							<h2>Scaling</h2>
@@ -261,6 +300,31 @@
 							Serverless microservices simply takes away any need to manage the provision of resources but it does restrict the technology that
 							can be provisioned based on that made available by the cloud provider. Although note, AWS serverless functions (lambda) does support
 							the notion of a docker image/template as the ultimate "get out clause".
+						</p>
+					</div>
+				</section>
+
+				<section id="ProxyGateway" class="spotlights">
+					<div class="inner">
+						<header class="major">
+							<h2>Reverse Proxy/Gateway</h2>
+						</header>
+						<p>
+							Even with their isolation, microservices should not be accessed directly. As a minimum, all microservices should
+							be accessed through a reverse proxy; nginx/Apache make for great reverse proxies with little overhead. Doing so,
+							allows for a single name endpoint for all microservices, but moreso, allows for canary style or blue/green deployments
+							to phase in modified/new services. The reverse proxy makes it easy to scale up instances (auto attach to the reverse proxy)
+							but also add increased separation (for example, the same microservice running in multipe cloud providers).
+						</p>
+						<p>
+							As your microservice landscape grow in maturity, your reverse proxy will take on more and more functionality. You'll find
+							it performing gateway style functionality (offloading authenication, circuit-breaking, throttling, geo-nearest resolution, ...).
+							If your reverse proxy is doing more than simple redirection, it's time to look at API Gateways, the likes of:
+							<ul>
+								<li><a href="https://aws.amazon.com/api-gateway/" target="_blank"></a>AWS API Gateway for lambda, along with CloudFront for geo-optimisations; allows for authentication interception.</li>
+								<li><a href="https://konghq.com/kong-community-edition/" target="_blank">Kong</a></li>
+								<li><a href="https://apigee.com/api-management/" target="_blank">apigee</a></li>
+							</ul>
 						</p>
 					</div>
 				</section>
