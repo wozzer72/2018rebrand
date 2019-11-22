@@ -3,6 +3,13 @@
     "/node_modules/"
   ],
   "presets": [
-    "env"
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current",
+        }
+      }
+    ]
   ]
 }

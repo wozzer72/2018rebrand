@@ -24,14 +24,6 @@
     "arrow-body-style": 0,
     "no-console": 0,
     "padded-blocks": 0,
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": true,
-        "optionalDependencies": false,
-        "peerDependencies": false
-      }
-    ],
     "newline-per-chained-call": 0,
     "import/prefer-default-export": 0,
     "no-mixed-operators": 0,

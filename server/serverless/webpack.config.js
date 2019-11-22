@@ -6,7 +6,7 @@ if (process.env.NODE_ENV === 'production') externals.push('aws-sdk');
 
  const lambdaFunctions = {
   entry: {
-    contactForm: ['babel-polyfill', './src/api/contactForm.js'],
+    contactForm: ['@babel/polyfill', './src/api/contactForm.js'],
   },
   output: {
     path: path.resolve(__dirname, './lib'),
