@@ -4,10 +4,7 @@ const validator = require('../util/validator');
 const sendEmail = require('../model/aws/sendEmail').sendEmail;
 
 export const handler = async (event, context) => {
-  var arnList = (context.invokedFunctionArn).split(":");
-  var lambdaRegion = arnList[3];
-
-  const message = event.Records && event.Records[0] ? JSON.parse(event.Records[0].Sns.Message) : null;
+  const arnList = (context.invokedFunctionArn).split(":");
   
   try {
     const response = {
