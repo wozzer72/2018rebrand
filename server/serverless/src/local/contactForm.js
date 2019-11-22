@@ -1,3 +1,5 @@
+"use strict";
+
 /* eslint-disable import/no-extraneous-dependencies */
 const myContacForm = require('../../lib/contactForm');
 
@@ -19,7 +21,7 @@ const sendContactForm = async () => {
 
         const returnVal = await myContacForm.handler(
             eventData,
-            { invokedFunctionArn : 'arn:aws:lambda:eu-west-1:accountid:function:sfc-registration' }
+            { invokedFunctionArn : 'arn:aws:lambda:eu-west-1:accountid:function:sendEmail' }
         );
         console.log("Handler returned: ", returnVal);
     } catch (err) {
@@ -28,5 +30,7 @@ const sendContactForm = async () => {
 }
 
 process.env.LOG_LEVEL = 5;
-process.env.EMAIL_ADDRESS = 'warren.ayling@wozitech-ltd.co.uk';
+process.env.TO_EMAIL_ADDRESS = 'warren.ayling@wozitech-ltd.co.uk';
+process.env.FROM_EMAIL_ADDRESS = 'warren.ayling@wozitech-ltd.co.uk';
+process.env.REGION='eu-west-1';
 sendContactForm();

@@ -36,6 +36,9 @@ describe("Contact Form Send Email", () => {
   it('should send email', () => {
     expect(validate('Bob Hope', 'bob@co.uk', 'Hello from Bob')).toBe(true);
 
+    expect(validate('', 'bob@co.uk', 'Hello from Bob')).toBe(false);
+    expect(validate('Bob', '', 'Hello from Bob')).toBe(false);
+    expect(validate('Bob', 'bob@co.uk', '')).toBe(false);
   });
 });
 

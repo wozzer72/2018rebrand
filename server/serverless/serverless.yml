@@ -34,7 +34,9 @@ functions:
     handler: contactForm.handler
     role: "arn:aws:iam::924132851837:role/lambda_and_ses"
     environment:
-      EMAIL_ADDRESS: "${self:custom.WOZITECH_EMAIL_ADDRESS.${self:provider.stage}}"
+      TO_EMAIL_ADDRESS: "${self:custom.WOZITECH_EMAIL_ADDRESS.${self:provider.stage}}"
+      FROM_EMAIL_ADDRESS: "warren.ayling@wozitech-ltd.co.uk"
+      REGION: ${self:custom.region}
     tags:
       owner: "WOZiTech"
       application: "Contact Form Send Email"

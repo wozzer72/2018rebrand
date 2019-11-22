@@ -1,3 +1,5 @@
+"use strict";
+
 export const validateEmail = (email) => {
   const emailRegex = /\S+@\S+\.\S\S+/;    // at least two characters for the domain
 

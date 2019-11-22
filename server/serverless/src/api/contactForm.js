@@ -1,6 +1,7 @@
 'use strict';
 
 const validator = require('../util/validator');
+const sendEmail = require('../model/aws/sendEmail').sendEmail;
 
 export const handler = async (event, context) => {
   var arnList = (context.invokedFunctionArn).split(":");
@@ -17,7 +18,6 @@ export const handler = async (event, context) => {
     };
     
     const body = JSON.parse(event.input.body);
-    console.log(`WA DEBUG: input body: `, body);
 
     if (!validator.validate(body.name, body.email, body.message)) {
       response.statusCode = 400;
@@ -29,13 +29,19 @@ export const handler = async (event, context) => {
       return response;
     }
 
+    // passes validation
+    await sendEmail(
+      process.env.FROM_EMAIL_ADDRESS,
+      body.email,
+      body.name,
+      body.message
+    );
+
     return response;
 
   } catch (err) {
     // unable to get establishments
-    console.error(err);
     throw new Error('Contact Form Send Email - error');
+    return false;
   }
-
-  return true;
 };
