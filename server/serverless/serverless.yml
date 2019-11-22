@@ -5,9 +5,10 @@ custom:
   region: ${opt:region, 'eu-west-1'}
   WOZITECH_EMAIL_ADDRESS:
     dev: warren.ayling@wozitech-ltd.co.uk
-    staging: warren.ayling@wozitech-ltd.co.uk
-    preprod: warren.ayling@wozitech-ltd.co.uk
     prod: warren.ayling@wozitech-ltd.co.uk
+  CORS_ORIGIN:
+    dev: ''
+    prod: http://wozitech-ltd.co.uk
 
 provider:
   name: aws
@@ -37,22 +38,12 @@ functions:
       TO_EMAIL_ADDRESS: "${self:custom.WOZITECH_EMAIL_ADDRESS.${self:provider.stage}}"
       FROM_EMAIL_ADDRESS: "warren.ayling@wozitech-ltd.co.uk"
       REGION: ${self:custom.region}
-      CORS_ORIGIN: "http://wozitech-ltd.co.uk"
+      CORS_ORIGIN: "${self:custom.CORS_ORIGIN.${self:provider.stage}}"
     events:
       - http:
           path: sendContactEmail
           method: post
-          # cors:
-          #   origins:
-          #     - http://wozitech-ltd.co.uk
-          #   headers:
-          #     - Content-Type
-          #     - X-Amz-Date
-          #     - Authorization
-          #     - X-Api-Key
-          #     - X-Amz-Security-Token
-          #     - X-Amz-User-Agent
-          #   allowCredentials: false
+          cors: true
     tags:
       owner: "WOZiTech"
       application: "Contact Form Send Email"

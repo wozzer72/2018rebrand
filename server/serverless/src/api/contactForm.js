@@ -13,17 +13,16 @@ export const handler = async (event, context) => {
       statusCode: 200,
       body: JSON.stringify({success:true}),
       headers: process.env.CORS_ORIGIN ? {
-        'Access-Control-Allow-Origin': `${process.env.CORS_ORIGIN}`, // Required for CORS support to work
+        'Access-Control-Allow-Origin': `${process.env.CORS_ORIGIN}`,
+        'Access-Control-Allow-Credentials': true,
+      } : {
+        'Access-Control-Allow-Origin': '*', // Required for CORS support to work
         'Access-Control-Allow-Credentials': false,
-      } : {},
+      },
       isBase64Encoded: false
     };
-    console.log("WA DEBUG - event: ", event)
-    
+   
     const body = JSON.parse(event.body);
-
-    console.log("WA DEBUG - event body: ", body)
-
     if (!validator.validate(body.name, body.email, body.message)) {
       response.statusCode = 400;
       response.body = JSON.stringify({

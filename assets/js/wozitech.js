@@ -2,19 +2,16 @@
 
 // switch between local (test) and deployed targets for backend remote
 function remoteUrl() {
-	var remoteUrl = 'http://localhost:3000/wozitech-contact-form/';
-    if (window.location.href.indexOf('wozitech') >= 0) {
+	var remoteUrl = 'https://4s2oupu8mh.execute-api.eu-west-1.amazonaws.com/dev/sendContactEmail';
+
+    if (window.location.href.indexOf('wozitech-ltd') >= 0) {
         // AWS API/lambda function
-        remoteUrl = ' https://ha0bthwppj.execute-api.eu-west-1.amazonaws.com/prod';
+        remoteUrl = 'https://4s066isqtc.execute-api.eu-west-1.amazonaws.com/prod/sendContactEmail';
     }
-    
-    // test only
-    remoteUrl = 'https://ha0bthwppj.execute-api.eu-west-1.amazonaws.com/prod/wozitech-contact-send-email';
-    //remoteUrl = 'https://69jdbrh9vc.execute-api.eu-west-1.amazonaws.com/Prod';
 
-	return remoteUrl;
+    return remoteUrl;
 }
-
+    
 // uses jquery POST to send email via AWS Lambda
 function contactSendEmail() {
     console.log("Processing contact form");
@@ -22,26 +19,21 @@ function contactSendEmail() {
     var email = $("#email").val();
     var message = $("#message").val();
 
-    //console.log("Name: " + name);
-    //console.log("Email: " + email);
-    //console.log("Message: " + message);
-
     // note, the AJAX headers still apply, so the JWT Token is still relevant
     //  as is CORS processing
     $.ajax({
         url: remoteUrl(),
         type: "post",
         data: JSON.stringify({
-            "from" : {
-                "name": name,
-                "email": email
-               },
-            "msg" : message
+            name,
+            email,
+            message
         }),
         contentType: 'application/json',
+        headers: {},
         processData: false,
         dataType: "json",
-        timeout: 3000,
+        timeout: 10000,
         success: function(data) {
             $("#contactformsenttext").text("Thank you - email has been sent to us. We will be in touch shortly.");
             overlayContactForm();
@@ -107,6 +99,8 @@ function resetContactForm() {
     $("#contactform")[0].reset();
     $("#contactformsent").hide();
     $("#contactform").show();
+
+    $("#messageLabel").text(`Message (500 characters remaining`);
 
     $("input[type=submit]").attr("disabled", "disabled");
 }
