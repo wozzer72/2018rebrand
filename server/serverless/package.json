@@ -50,6 +50,7 @@
     "eslint-plugin-jest": "^21.26.2",
     "eslint-plugin-wyze": "^3.4.0",
     "jest": "^24.8.0",
+    "randomstring": "^1.1.5",
     "serverless": "^1.43.0",
     "serverless-plugin-include-dependencies": "^3.1.1",
     "serverless-pseudo-parameters": "^2.2.0",
