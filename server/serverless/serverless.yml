@@ -37,6 +37,22 @@ functions:
       TO_EMAIL_ADDRESS: "${self:custom.WOZITECH_EMAIL_ADDRESS.${self:provider.stage}}"
       FROM_EMAIL_ADDRESS: "warren.ayling@wozitech-ltd.co.uk"
       REGION: ${self:custom.region}
+      CORS_ORIGIN: "http://wozitech-ltd.co.uk"
+    events:
+      - http:
+          path: sendContactEmail
+          method: post
+          # cors:
+          #   origins:
+          #     - http://wozitech-ltd.co.uk
+          #   headers:
+          #     - Content-Type
+          #     - X-Amz-Date
+          #     - Authorization
+          #     - X-Api-Key
+          #     - X-Amz-Security-Token
+          #     - X-Amz-User-Agent
+          #   allowCredentials: false
     tags:
       owner: "WOZiTech"
       application: "Contact Form Send Email"

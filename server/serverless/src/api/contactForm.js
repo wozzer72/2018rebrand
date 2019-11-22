@@ -5,16 +5,24 @@ const sendEmail = require('../model/aws/sendEmail').sendEmail;
 
 export const handler = async (event, context) => {
   const arnList = (context.invokedFunctionArn).split(":");
+
+  console.log("WA DEBUG - CORS: ", process.env.CORS_ORIGIN)
   
   try {
     const response = {
       statusCode: 200,
       body: JSON.stringify({success:true}),
-      headers: {},
+      headers: process.env.CORS_ORIGIN ? {
+        'Access-Control-Allow-Origin': `${process.env.CORS_ORIGIN}`, // Required for CORS support to work
+        'Access-Control-Allow-Credentials': false,
+      } : {},
       isBase64Encoded: false
     };
+    console.log("WA DEBUG - event: ", event)
     
-    const body = JSON.parse(event.input.body);
+    const body = JSON.parse(event.body);
+
+    console.log("WA DEBUG - event body: ", body)
 
     if (!validator.validate(body.name, body.email, body.message)) {
       response.statusCode = 400;
