@@ -58,7 +58,7 @@ function contactSendEmail() {
 //  form elements, ensuring they are "as expected" and then
 //  enabling the "Send Message" button
 function validateContactForm() {
-    //console.log("Validating the contact form");
+    const emailRegex = /\S+@\S+\.\S\S+/;    // at least two characters for the domain
 
     var name = $("#name").val();
     var email = $("#email").val();
@@ -66,10 +66,20 @@ function validateContactForm() {
 
     if ((name.length > 0) &&
         (email.length > 0) &&
-        (message.length > 0)) {
+        (message.length > 0 && message.length < 500) &&
+        emailRegex.test(email)) {
         // enable the button
         $("input[type=submit]").removeAttr("disabled");
+    } else {
+        $("input[type=submit]").attr("disabled", true);
     }
+}
+
+function showRemainingCharacters() {
+    const maxLength = 500;
+    const currentLength = $("#message").val().length;
+    const remaining = maxLength-currentLength-1;    // minus 1 because the keydown event will add one more character
+    $("#messageLabel").text(`Message (${remaining} characters remaining`);
 }
 
 // attach callbacks to the form input fields
@@ -81,6 +91,7 @@ $('input[name=email]').on('input',function(e){
 });
 $('#message').keydown(function (event) {
     validateContactForm();
+    showRemainingCharacters();
 });
 
 // override the form reset to ensure the submit button is disabled
@@ -102,8 +113,6 @@ function resetContactForm() {
 
 // overlays the contact form with "email sent", resetting after a short delay
 function overlayContactForm(timeout=2800) {
-    console.log("overlaying contact form");
-
     // hide the contact form but show the email sent overlay
     $("#contactform").hide();
     $("#contactformsent").show();
