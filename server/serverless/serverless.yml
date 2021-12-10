@@ -8,11 +8,11 @@ custom:
     prod: warren.ayling@wozitech-ltd.co.uk
   CORS_ORIGIN:
     dev: ''
-    prod: http://wozitech-ltd.co.uk
+    prod: wozitech-ltd.co.uk
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs14.x
   profile: serverless-admin
   region: ${self:custom.region}
   endpointType: REGIONAL

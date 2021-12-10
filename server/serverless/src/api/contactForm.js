@@ -6,19 +6,29 @@ const sendEmail = require('../model/aws/sendEmail').sendEmail;
 export const handler = async (event, context) => {
   const arnList = (context.invokedFunctionArn).split(":");
 
-  console.log("WA DEBUG - CORS: ", process.env.CORS_ORIGIN)
+  console.log("WA DEBUG - CORS: ", process.env.CORS_ORIGIN);
+
+  const webOrigin = event.headers ? event.headers.origin : '';
+  let corsHeaders = {};
+  if (process.env.CORS_ORIGIN) {
+    if (webOrigin.match(process.env.CORS_ORIGIN)) {
+      corsHeaders = {
+        'Access-Control-Allow-Origin': `${webOrigin}`,
+        'Access-Control-Allow-Credentials': true,
+      }
+    }
+  } else {
+    corsHeaders = {
+      'Access-Control-Allow-Origin': '*', // Required for CORS support to work
+      'Access-Control-Allow-Credentials': false,
+    };
+  }
   
   try {
     const response = {
       statusCode: 200,
       body: JSON.stringify({success:true}),
-      headers: process.env.CORS_ORIGIN ? {
-        'Access-Control-Allow-Origin': `${process.env.CORS_ORIGIN}`,
-        'Access-Control-Allow-Credentials': true,
-      } : {
-        'Access-Control-Allow-Origin': '*', // Required for CORS support to work
-        'Access-Control-Allow-Credentials': false,
-      },
+      headers: corsHeaders,
       isBase64Encoded: false
     };
    
