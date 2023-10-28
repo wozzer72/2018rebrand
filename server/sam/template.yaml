@@ -17,6 +17,16 @@ Resources:
       Runtime: nodejs18.x
       Architectures:
         - x86_64
+      Policies:
+        # Give the Lambda service access to poll your DynamoDB Stream
+        - AWSLambdaBasicExecutionRole
+        - Statement:
+          - Sid: SES
+            Effect: Allow
+            Action:
+              - ses:SendEmail
+              - ses:SendRawEmail
+            Resource: '*'
       Events:
         ContactUs:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
