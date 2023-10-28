@@ -9,12 +9,49 @@ Globals:
     Timeout: 3
 
 Resources:
+  ApiGatewayApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      Cors: "'wozitech-ltd.co.uk'"
+      # preventing SAM creating the "Stage" stage
+      # OpenApiVersion: 3.1.0
+      Tags:
+        Business: WOZiTech
+        Project: Website
+      MethodSettings:
+        # need to set this on specific endpoint GET /contact-us. The only configuration I have found that deploys
+        #   is ResourcePath: '/contact-us/GET' and HttpMethod: 'GET' - but on the deployed APIGW in Web console - nada!
+        - ResourcePath: '/*'
+          HttpMethod: '*'
+          # one request per second
+          ThrottlingRateLimit: 1
+          # up to five concurrent requests
+          ThrottlingBurstLimit: 5
+          # LoggingLevel: ERROR
+          # DataTraceEnabled: false
+          # MetricsEnabled: false
+      # Policies:
+      #   - Statement:
+      #     - Sid: Logging
+      #       Effect: Allow
+      #       Action:
+      #       - logs:CreateLogGroup
+      #       - logs:CreateLogStream
+      #       - logs:DescribeLogGroups
+      #       - logs:DescribeLogStreams
+      #       - logs:PutLogEvents
+      #       - logs:GetLogEvents
+      #       - logs:FilterLogEvents
   ContactUsFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       CodeUri: contact-us/
       Handler: app.lambdaHandler
       Runtime: nodejs18.x
+      Tags:
+        Business: WOZiTech
+        Project: Website
       Architectures:
         - x86_64
       Policies:
@@ -33,6 +70,8 @@ Resources:
           Properties:
             Path: /contact-us
             Method: get
+            RestApiId:
+              Ref: ApiGatewayApi
     Metadata: # Manage esbuild properties
       BuildMethod: esbuild
       BuildProperties:
@@ -48,7 +87,7 @@ Outputs:
   # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
   ContactUsFunctionApi:
     Description: "API Gateway endpoint URL for Prod stage"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/contact-us/"
+    Value: !Sub "https://${ApiGatewayApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/contact-us/"
   ContactUsFunction:
     Description: "Lambda Function ARN"
     Value: !GetAtt ContactUsFunction.Arn
