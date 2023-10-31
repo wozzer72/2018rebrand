@@ -1,6 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import { mockClient } from 'aws-sdk-client-mock';
-import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
+import { SESClient } from '@aws-sdk/client-ses';
 import { expect, describe, it, jest, beforeAll, afterAll } from '@jest/globals';
 import { lambdaHandler } from './app';
 

@@ -19,6 +19,7 @@ describe('Integration tests contact-us api', () => {
   });
 
   it.skip('integration test 1', async () => {
+    // should test for rate limiting (throttling)
     expect(1).toEqual(1);
   });
 });

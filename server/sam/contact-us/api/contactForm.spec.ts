@@ -6,7 +6,7 @@ import { contactForm, getCorsHeaders } from './contactForm';
 
 const backupGlobalConsole = global.console;
 
-describe.skip('Unit test for CORS', () => {
+describe('Unit test for CORS', () => {
   beforeAll(() => {
     // mock console methods
     global.console.error = jest.fn();
@@ -72,6 +72,7 @@ describe.skip('Unit test for CORS', () => {
   };
 
   it('returns default CORS when env var undefined', async () => {
+    delete process.env['CORS_ORIGIN'];
     const theHeaders = getCorsHeaders(event);
     expect(theHeaders).toEqual({
       'Access-Control-Allow-Origin': '*',
@@ -90,6 +91,13 @@ describe.skip('Unit test for CORS', () => {
 
   it('returns expected CORS when env var is defined and does not match "origin" header', async () => {
     process.env.CORS_ORIGIN = 'unexpected.com';
+    const theHeaders = getCorsHeaders(event);
+    expect(theHeaders).toEqual({});
+  });
+
+  it('returns expected CORS when env var is defined but "origin" header is no defined', async () => {
+    process.env.CORS_ORIGIN = 'unexpected.com';
+    event.headers.origin = undefined;
     const theHeaders = getCorsHeaders(event);
     expect(theHeaders).toEqual({});
   });

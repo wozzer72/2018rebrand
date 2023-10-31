@@ -10,8 +10,8 @@ type CorsHeadersType = {
 
 export const getCorsHeaders = (event: APIGatewayProxyEvent): CorsHeadersType => {
   const CORS_ORIGIN: string | undefined = process.env.CORS_ORIGIN;
-
   const webOrigin = event.headers?.origin ? event.headers.origin : '';
+
   let corsHeaders: CorsHeadersType = {};
   if (CORS_ORIGIN) {
     if (webOrigin.match(CORS_ORIGIN)) {
