@@ -1,26 +1,28 @@
 # wozitech-contact-us
 
-Built from SAM CLI hello-world example, and then modified for specific WOZiTech contact-us form.
+This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders.
 
-* Uplifted previous contact-us API lambda code from jaavscript to typescript.
-* Uplifted AWS SDK from V2 to V3.
-* Increased unit test coverage to 100%:
-  * Using https://github.com/m-radzikowski/aws-sdk-client-mock#readme for AWS mocks.
+- hello-world - Code for the application's Lambda function written in TypeScript.
+- events - Invocation events that you can use to invoke the function.
+- hello-world/tests - Unit tests for the application code. 
+- template.yaml - A template that defines the application's AWS resources.
 
-Customising the project - `template.yaml``:
-* lambda service role policy: https://repost.aws/knowledge-center/lambda-sam-template-permissions.
-* resource is "contact-us" not "hello-world"
-  * resource Policies including SAM managed "SESCrudPolicy".
-* apigw resource to introduce throttling (on /* - see below)
-  * and CORS - "OPTIONS"
-* todo:
-  * API Gateway throttling - on /contact-us endpoint (just can't get the format of the template to work!)
-  * API Monitoring - metric and alarm
+The application uses several AWS resources, including Lambda functions and an API Gateway API. These resources are defined in the `template.yaml` file in this project. You can update the template to add AWS resources through the same deployment process that updates your application code.
 
-To test API from the command line:
-```
-curl -X POST https://api-gw-root-url/stage/contact-us -H 'Content-Type: application/json' -d '{"name":"Your name","email":"your-email@mail.com","message":"Hello from you"}'
-```
+If you prefer to use an integrated development environment (IDE) to build and test your application, you can use the AWS Toolkit.  
+The AWS Toolkit is an open source plug-in for popular IDEs that uses the SAM CLI to build and deploy serverless applications on AWS. The AWS Toolkit also adds a simplified step-through debugging experience for Lambda function code. See the following links to get started.
+
+* [CLion](https://docs.aws.amazon.com/toolkit-for-jetbrains/latest/userguide/welcome.html)
+* [GoLand](https://docs.aws.amazon.com/toolkit-for-jetbrains/latest/userguide/welcome.html)
+* [IntelliJ](https://docs.aws.amazon.com/toolkit-for-jetbrains/latest/userguide/welcome.html)
+* [WebStorm](https://docs.aws.amazon.com/toolkit-for-jetbrains/latest/userguide/welcome.html)
+* [Rider](https://docs.aws.amazon.com/toolkit-for-jetbrains/latest/userguide/welcome.html)
+* [PhpStorm](https://docs.aws.amazon.com/toolkit-for-jetbrains/latest/userguide/welcome.html)
+* [PyCharm](https://docs.aws.amazon.com/toolkit-for-jetbrains/latest/userguide/welcome.html)
+* [RubyMine](https://docs.aws.amazon.com/toolkit-for-jetbrains/latest/userguide/welcome.html)
+* [DataGrip](https://docs.aws.amazon.com/toolkit-for-jetbrains/latest/userguide/welcome.html)
+* [VS Code](https://docs.aws.amazon.com/toolkit-for-vscode/latest/userguide/welcome.html)
+* [Visual Studio](https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/welcome.html)
 
 ## Deploy the sample application
 
@@ -32,12 +34,20 @@ To use the SAM CLI, you need the following tools.
 * Node.js - [Install Node.js 18](https://nodejs.org/en/), including the NPM package management tool.
 * Docker - [Install Docker community edition](https://hub.docker.com/search/?type=edition&offering=community)
 
-To build, deploy and delete, run the following in your shell:
+To build and deploy your application for the first time, run the following in your shell:
 
 ```bash
 sam build
-AWS_POFILE=wozitech sam deploy
+sam deploy --guided
 ```
+
+The first command will build the source of your application. The second command will package and deploy your application to AWS, with a series of prompts:
+
+* **Stack Name**: The name of the stack to deploy to CloudFormation. This should be unique to your account and region, and a good starting point would be something matching your project name.
+* **AWS Region**: The AWS region you want to deploy your app to.
+* **Confirm changes before deploy**: If set to yes, any change sets will be shown to you before execution for manual review. If set to no, the AWS SAM CLI will automatically deploy application changes.
+* **Allow SAM CLI IAM role creation**: Many AWS SAM templates, including this example, create AWS IAM roles required for the AWS Lambda function(s) included to access AWS services. By default, these are scoped down to minimum required permissions. To deploy an AWS CloudFormation stack which creates or modifies IAM roles, the `CAPABILITY_IAM` value for `capabilities` must be provided. If permission isn't provided through this prompt, to deploy this example you must explicitly pass `--capabilities CAPABILITY_IAM` to the `sam deploy` command.
+* **Save arguments to samconfig.toml**: If set to yes, your choices will be saved to a configuration file inside the project, so that in the future you can just re-run `sam deploy` without parameters to deploy changes to your application.
 
 You can find your API Gateway Endpoint URL in the output values displayed after deployment.
 
