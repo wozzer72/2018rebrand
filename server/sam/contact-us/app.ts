@@ -19,7 +19,7 @@ export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGat
       throw new Error('FROM_EMAIL_ADDRESS is env var is not defined');
     }
 
-    if (event.httpMethod !== 'post') {
+    if (event.httpMethod !== 'POST') {
       throw new Error('POST only supported');
     }
 

@@ -10,39 +10,7 @@ export const sendEmail = async (from: string, to: string, name: string, message:
   const htmlBody = `<html><body><h1>From: ${name}</h1><h1>Email: ${to}</h1><p>${message}</p></body></html>`;
   const plainBody = `From: ${name}/${to}. ${message}`;
 
-  // const params = {
-  //   Destination: {
-  //     /* required */
-  //     // CcAddresses: [
-  //     //   'EMAIL_ADDRESS',
-  //     //   /* more items */
-  //     // ],
-  //     ToAddresses: [from],
-  //   },
-  //   Message: {
-  //     /* required */
-  //     Body: {
-  //       /* required */
-  //       Html: {
-  //         Charset: 'UTF-8',
-  //         Data: htmlBody,
-  //       },
-  //       Text: {
-  //         Charset: 'UTF-8',
-  //         Data: plainBody,
-  //       },
-  //     },
-  //     Subject: {
-  //       Charset: 'UTF-8',
-  //       Data: 'From WOZiTech Ltd public',
-  //     },
-  //   },
-  //   Source: from /* required */,
-  //   // ReplyToAddresses: [
-  //   //    'EMAIL_ADDRESS',
-  //   //   /* more items */
-  //   // ],
-  // };
+  from = 'something-supid@mail.com';
 
   try {
     const sendEmailCommandInput: SendEmailCommandInput = {
@@ -81,8 +49,7 @@ export const sendEmail = async (from: string, to: string, name: string, message:
     const sendEmailCommand: SendEmailCommand = new SendEmailCommand(sendEmailCommandInput);
     // const ses = await new AWS.SES({ apiVersion: '2010-12-01', region: AWS_REGION }).sendEmail(params).promise();
 
-    const results: SendEmailCommandOutput = await client.send(sendEmailCommand);
-    console.log('WA DEBUG - send email results: ', results);
+    await client.send(sendEmailCommand);
 
     return htmlBody;
   } catch (err) {

@@ -1,7 +1,7 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import { validate } from '../util/validator';
 import { sendEmail } from '../model/aws/sendEmail';
-import { badResponse } from '../util/apiResponses';
+import { badResponse, unexpectedResponse } from '../util/apiResponses';
 
 type CorsHeadersType = {
   'Access-Control-Allow-Origin'?: string;
@@ -10,7 +10,6 @@ type CorsHeadersType = {
 
 export const getCorsHeaders = (event: APIGatewayProxyEvent): CorsHeadersType => {
   const CORS_ORIGIN: string | undefined = process.env.CORS_ORIGIN;
-  console.log('WA DEBUG - CORS: ', CORS_ORIGIN);
 
   const webOrigin = event.headers?.origin ? event.headers.origin : '';
   let corsHeaders: CorsHeadersType = {};
@@ -56,7 +55,6 @@ export const contactForm = async (
 
     return badResponse('Failed validation: No body');
   } catch (err) {
-    // unable to get establishments
-    throw new Error('Contact Form Send Email - error');
+    return unexpectedResponse;
   }
 };

@@ -1,14 +1,14 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
-import { lambdaHandler } from './app';
-import { expect, describe, it, jest, beforeAll, afterAll } from '@jest/globals';
-
 import { mockClient } from 'aws-sdk-client-mock';
+import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
+import { expect, describe, it, jest, beforeAll, afterAll } from '@jest/globals';
+import { lambdaHandler } from './app';
 
 const backupGlobalConsole = global.console;
 
 describe('Unit test for app handler', () => {
   const event: APIGatewayProxyEvent = {
-    httpMethod: 'post',
+    httpMethod: 'POST',
     body: '',
     headers: {
       origin: 'bob.com',
@@ -23,7 +23,7 @@ describe('Unit test for app handler', () => {
       accountId: '123456789012',
       apiId: '1234',
       authorizer: {},
-      httpMethod: 'get',
+      httpMethod: 'POST',
       identity: {
         accessKey: '',
         accountId: '',
@@ -58,13 +58,14 @@ describe('Unit test for app handler', () => {
     resource: '',
     stageVariables: {},
   };
+  const sesMock = mockClient(SESClient);
 
   beforeAll(() => {
     // mock console methods
     global.console.error = jest.fn();
-    // global.console.warn = jest.fn();
-    // global.console.log = jest.fn();
-    // global.console.info = jest.fn();
+    global.console.warn = jest.fn();
+    global.console.log = jest.fn();
+    global.console.info = jest.fn();
   });
   afterAll(() => {
     // restore console mocks
@@ -85,7 +86,7 @@ describe('Unit test for app handler', () => {
   it('returns unexpected if not using POST', async () => {
     process.env.FROM_EMAIL_ADDRESS = 'from@wozitech-ltd.co.uk';
     const originalHttpmethod = event.httpMethod;
-    event.httpMethod = 'get';
+    event.httpMethod = 'GET';
     const result = await lambdaHandler(event);
     expect(result).toEqual({
       statusCode: 500,
@@ -93,20 +94,27 @@ describe('Unit test for app handler', () => {
       isBase64Encoded: false,
     });
     expect(global.console.error).toBeCalledTimes(1);
-    expect(global.console.error).toBeCalledWith(new Error('FROM_EMAIL_ADDRESS is env var is not defined'));
+    expect(global.console.error).toBeCalledWith(new Error('POST only supported'));
     event.httpMethod = originalHttpmethod;
   });
 
-  it.skip('verifies successful response', async () => {
+  it('verifies successful response', async () => {
     process.env.FROM_EMAIL_ADDRESS = 'from@wozitech-ltd.co.uk';
     process.env.CORS_ORIGIN = 'bob.com';
 
+    event.body = JSON.stringify({
+      name: 'Warren Ayling',
+      email: 'warren.ayling@wozitech-ltd.co.uk',
+      message: 'test message',
+    });
+
+    sesMock.onAnyCommand().resolves({});
     const result: APIGatewayProxyResult = await lambdaHandler(event);
 
     expect(result.statusCode).toEqual(200);
     expect(result.body).toEqual(
       JSON.stringify({
-        message: 'contact us',
+        success: true,
       }),
     );
   });
