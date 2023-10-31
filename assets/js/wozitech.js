@@ -22,7 +22,7 @@ function contactSendEmail() {
     // note, the AJAX headers still apply, so the JWT Token is still relevant
     //  as is CORS processing
     $.ajax({
-        url: remoteUrl(),
+        url: '/contact-us.php',
         type: "post",
         data: JSON.stringify({
             name,
