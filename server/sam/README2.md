@@ -2,15 +2,25 @@
 
 Built from SAM CLI hello-world example, and then modified for specific WOZiTech contact-us form.
 
+* Uplifted previous contact-us API lambda code from jaavscript to typescript.
+* Uplifted AWS SDK from V2 to V3.
+* Increased unit test coverage to 100%:
+  * Using https://github.com/m-radzikowski/aws-sdk-client-mock#readme for AWS mocks.
+
 Customising the project - `template.yaml``:
 * lambda service role policy: https://repost.aws/knowledge-center/lambda-sam-template-permissions.
 * resource is "contact-us" not "hello-world"
-* todo: ????
-  * resource:
-    * refactored all the unit tests too, with code copied from previous "serverless framework" implementation, but migrated to using AWS SDK V3 (rather than V2).
-  * API Gateway trottling
-  * API Monitoring - metric and alarm,
-  * Enabling SES
+  * resource Policies including SAM managed "SESCrudPolicy".
+* apigw resource to introduce throttling (on /* - see below)
+  * and CORS - "OPTIONS"
+* todo:
+  * API Gateway throttling - on /contact-us endpoint (just can't get the format of the template to work!)
+  * API Monitoring - metric and alarm
+
+To test API from the command line:
+```
+curl -X POST https://api-gw-root-url/stage/contact-us -H 'Content-Type: application/json' -d '{"name":"Your name","email":"your-email@mail.com","message":"Hello from you"}'
+```
 
 ## Deploy the sample application
 

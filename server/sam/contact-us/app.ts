@@ -1,4 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
+import { unexpectedResponse } from './util/apiResponses';
+import { contactForm } from './api/contactForm';
 
 /**
  *
@@ -12,19 +14,18 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 
 export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
   try {
-    return {
-      statusCode: 200,
-      body: JSON.stringify({
-        message: 'contact us',
-      }),
-    };
+    const FROM_EMAIL_ADDRESS: string | undefined = process.env.FROM_EMAIL_ADDRESS;
+    if (FROM_EMAIL_ADDRESS === undefined) {
+      throw new Error('FROM_EMAIL_ADDRESS is env var is not defined');
+    }
+
+    if (event.httpMethod !== 'post') {
+      throw new Error('POST only supported');
+    }
+
+    return contactForm(FROM_EMAIL_ADDRESS, event);
   } catch (err) {
-    console.log(err);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({
-        message: 'some error happened',
-      }),
-    };
+    console.error(err);
+    return unexpectedResponse;
   }
 };
