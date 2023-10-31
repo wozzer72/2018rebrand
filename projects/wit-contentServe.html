@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>wit-contentServe</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="apple-touch-icon" sizes="57x57" href="../favicon/apple-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="../favicon/apple-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="../favicon/apple-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="../favicon/apple-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="../favicon/apple-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="../favicon/apple-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="../favicon/apple-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="../favicon/apple-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-icon-180x180.png">
+		<link rel="icon" type="image/png" sizes="192x192"  href="../favicon/android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="../favicon/favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+		<link rel="manifest" href="../favicon/manifest.json">
+		<meta name="msapplication-TileColor" content="#ffffff">
+		<meta name="msapplication-TileImage" content="../favicon/ms-icon-144x144.png">
+		<meta name="theme-color" content="#ffffff">
+
+		<!--[if lte IE 8]><script src="../assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="../assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+				<header id="header">
+					<a href="../index.html" class="logo"><strong>WOZ</strong>iTech <span>Ltd</span></a>
+					<nav>
+						<a href="#menu">Menu</a>
+					</nav>
+				</header>
+
+				<!-- Menu -->
+				<nav id="menu">
+					<ul class="links">
+						<li><a href="/projects.html">Projects</a></li>
+						<li><a href="wit-piDash.html">wit-piDash</a></li>
+						<li><a href="wit-serve.html">wit-serve</a></li>
+					</ul>
+					<ul class="actions vertical">
+						<li><a href="/index.html" class="button special fit">Home</a></li>
+					</ul>
+				</nav>
+
+				<section id="banner" class="major"  style="background-image: url('../images/2018-corporare-official-wit-contentServe.png');background-size: 450px 450px;">
+					<div class="inner">
+						<header class="major">
+							<h1>wit-contentServe</i></h1>
+						</header>
+						<div class="content">
+							<p>Content Service for all wit products</p>
+							<ul class="actions">
+								<li><a target="_blank" href="https://github.com/wozitech/wit-contentServe" class="button next scrolly">Get the code</a></li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<!-- Main -->
+				<div id="main" class="alt">
+
+					<!-- One -->
+					<section id="one">
+						<div class="inner" style="padding-top: 0px;">
+							<header class="major">
+								<h1>Introduction</h1>
+							</header>
+							<p>
+								Provides content (data) for all <code>wit</code> products, significantly so for the <code>wit-dash</code> application. 
+							</p>
+						</div>
+
+						<div class="inner">
+							<header class="major">
+								<h1>Technologies</h1>
+							</header>
+							<p>
+								A <a href="https://nodejs.org/en/">nodejs</a> application running the <a href="https://nestjs.com/">nest.js</a> framework
+								for building standalone and/or horizontally scalable application with a GraphQL core service, with resolvers provides by
+								a set of local and/or remote microservices. The data store is provided by the excellent MongoDB.
+							</p>
+							<p>
+								JWT tokens provided in `Authorization` header are used for both authentication and authorisation, ensuring protection
+								of data at all times. In the &apos;WOZiTech&apos; hosted environments, this provided through the 3rd party `Auth0` service.
+								For development and local test environments, a local token service is provided. 
+							</p>
+							<p>
+								Data caching is provided within the GraphQL service to ensure fast and efficient access to relatively static content.
+							</p>
+							<p>
+								Creation, Update and Deletion of content is facilitated through GraphQL mutations, using an Event Sourcing approach with microservices.
+								GraphQL Subscriptions are provided allowing content to be fast tracked to end devices as content is created/updated,
+								facilitated once again through the Event Sourcing approach.
+							</p>
+							<p>
+								Showcasing this project is:
+								<ul>
+									<li><a href="https://www.mongodb.com/">MongoDB</a> - document (JSON) storage for all licenses and accounts.</li>
+									<li><a href="https://nestjs.com/">nest.js</a> - node.js framework for building efficient, reliable and scalable server-side applications.</li>
+								</ul>
+
+								Dependencies:
+								<ul>
+									<li><code>node.js</code> - minimum of V8.x.x, which includes <code>npm</code></li>
+									<li><code>git</code> and a <code>github</code> account</li>
+									<li><code>vscode</code> - my goto Javascript, but in this case, typescript editor with plugins for GraphQL</li>
+								</ul>
+							</p>
+						</div>
+					</section>
+				</div>
+
+				<!-- Footer -->
+				<footer id="footer">
+					<div class="inner">
+						<ul class="icons">
+							<li><a target="_blank" href="https://www.linkedin.com/in/WarrenAyling/" class="icon alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a target="_blank" href="https://wozitech.myddns.rocks" class="icon alt fa-cogs"><span class="label">Technical</span></a></li>
+							<li><a target="_blank" href="https://github.com/wozitech" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
+					</ul>
+						<ul class="copyright">
+							<li>&copy; WOZ<i>iTech</i> 2023</li><li>Design: <a href="https://html5up.net">HTML5 UP (Forty)</a></li>
+						</ul>
+					</div>
+				</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../assets/js/skel.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="../assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../assets/js/main.js"></script>
+
+	</body>
+</html>

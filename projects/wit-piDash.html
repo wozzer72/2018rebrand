@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>wit-piDash</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="apple-touch-icon" sizes="57x57" href="../favicon/apple-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="../favicon/apple-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="../favicon/apple-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="../favicon/apple-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="../favicon/apple-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="../favicon/apple-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="../favicon/apple-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="../favicon/apple-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-icon-180x180.png">
+		<link rel="icon" type="image/png" sizes="192x192"  href="../favicon/android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="../favicon/favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+		<link rel="manifest" href="../favicon/manifest.json">
+		<meta name="msapplication-TileColor" content="#ffffff">
+		<meta name="msapplication-TileImage" content="../favicon/ms-icon-144x144.png">
+		<meta name="theme-color" content="#ffffff">
+
+		<!--[if lte IE 8]><script src="../assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="../assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+				<header id="header">
+					<a href="../index.html" class="logo"><strong>WOZ</strong>iTech <span>Ltd</span></a>
+					<nav>
+						<a href="#menu">Menu</a>
+					</nav>
+				</header>
+
+				<!-- Menu -->
+				<nav id="menu">
+					<ul class="links">
+						<li><a href="/projects.html">Projects</a></li>
+						<li><a href="wit-server.html">wit-serve</a></li>
+						<li><a href="wit-contentServe.html">wit-contentServe</a></li>
+					</ul>
+					<ul class="actions vertical">
+						<li><a href="/index.html" class="button special fit">Home</a></li>
+					</ul>
+				</nav>
+
+				<section id="banner" class="major" style="background-image: url('../images/2018-corporare-official-wit-piDash.png');background-size: 450px 450px;">
+					<div class="inner">
+						<header class="major">
+							<h1>wit-piDash</h1>
+						</header>
+						<div class="content">
+							<p>Dynamic Content Dashboard</p>
+						</div>
+					</div>
+				</section>
+
+	
+
+				<!-- Main -->
+				<div id="main" class="alt">
+
+					<!-- One -->
+					<section id="one">
+						<div class="inner" style="padding-top: 0px;">
+							<header class="major">
+								<h1>Introduction</h1>
+							</header>
+							<p>
+								This project has been in constant development for a few years now. It was the project that got me
+								started with node.js and MongoDB. It is a project I continue to use to learn new technologies. Now
+								on its third re-incarnation, completely redeveloped,  is a WOZiTech product, hence the
+								 &quot;wit&quot; prefix; short for &quot;WOZiTech&quot;.
+							</p>
+							<p>
+								At its core is the Raspberry PI directly connected to a display device, typically a large TV; hence wit-pi. Content (data only) is
+								served to the PI, which is then displayed; hence wit-piDash (Dash is short for Dashboard).
+							</p>
+							<p>
+								wit-dash is the main application, running locally (within a docker container) and serving local content. Why run locally? Allow content
+								to continue to be server even without an Internet connection all the while maintaining licensing/subscription restrictions.
+							</p>
+							<p>
+								Showcasing this project is:
+								<ul>
+									<li>Raspberry PI -Model 3; running a customised FlintOS distribution with docker; this is wit-pi.</li>
+									<li>A local electron/VueJS - docker container running the &quot;wit-dash&quot; application; presents as a desktop application.</li>
+									<li>HTML5 - rich text display</li>
+									<li><code>wit-piServe</code> - docker container hosting wit-dash application as the local web service to wit-dash and connects to wit-contentServe, the WOZiTech central content server to get content (poll and notification).</li>
+									<li><code>wit-piManager</code> - docker container managing licensing of &quot;wit-pi&quot;, &quot;wit-piServe&quot; and &quot;wit-dash&quot;, in addition to checking for and installing updates (OS, security and application).</li>
+
+									<li><a target="_blank" href="http://soulwire.github.io/fit.js/">fit.js</a> - a clever library to constrain web elements within other elements, with alignment. Used by <code>wit-dash</code> application (Vue.JS compatible?).</li>
+									<li><a target="_blank" href="http://lokijs.org/#/">LokiJS</a> - a fast in-memory document oriented data store for node.js, browser and cordova. Used here by <code>wit-secureContent</code> to hold transient content data.</li>									
+								</ul>
+							</p>
+
+							<p>
+								Links to this project include:
+								<ul>
+									<li><a href="wit-contentServe.html">wit-contentServe</a> - the primary data service for content.</li>
+									<li><code>wit-piSecure</code> - running in a Docker container on wit-pi, securely connects to wit-serve to manage PI identity.</li>
+									<li><code>wit-piGesture</code> - running in a Docker container on wit-pi (Raspberry PI Model 3) interacts with content using gestures captured via web camera.</li>
+								</ul>
+							</p>
+						</div>
+					</section>
+				</div>
+
+				<!-- Footer -->
+				<footer id="footer">
+					<div class="inner">
+						<ul class="icons">
+							<li><a target="_blank" href="https://www.linkedin.com/in/WarrenAyling/" class="icon alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a target="_blank" href="https://wozitech.myddns.rocks" class="icon alt fa-cogs"><span class="label">Technical</span></a></li>
+							<li><a target="_blank" href="https://github.com/wozitech" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
+					</ul>
+						<ul class="copyright">
+							<li>&copy; WOZ<i>iTech</i> 2023</li><li>Design: <a href="https://html5up.net">HTML5 UP (Forty)</a></li>
+						</ul>
+					</div>
+				</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../assets/js/skel.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="../assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../assets/js/main.js"></script>
+
+	</body>
+</html>

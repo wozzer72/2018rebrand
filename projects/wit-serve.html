@@ -1,0 +1,239 @@
+<!DOCTYPE HTML>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>wit-serve</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="apple-touch-icon" sizes="57x57" href="../favicon/apple-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="../favicon/apple-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="../favicon/apple-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="../favicon/apple-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="../favicon/apple-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="../favicon/apple-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="../favicon/apple-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="../favicon/apple-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-icon-180x180.png">
+		<link rel="icon" type="image/png" sizes="192x192"  href="../favicon/android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="../favicon/favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+		<link rel="manifest" href="../favicon/manifest.json">
+		<meta name="msapplication-TileColor" content="#ffffff">
+		<meta name="msapplication-TileImage" content="../favicon/ms-icon-144x144.png">
+		<meta name="theme-color" content="#ffffff">
+
+		<!--[if lte IE 8]><script src="../assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="../assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+				<header id="header">
+					<a href="../index.html" class="logo"><strong>WOZ</strong>iTech <span>Ltd</span></a>
+					<nav>
+						<a href="#menu">Menu</a>
+					</nav>
+				</header>
+
+				<!-- Menu -->
+				<nav id="menu">
+					<ul class="links">
+						<li><a href="/projects.html">Projects</a></li>
+						<li><a href="wit-piDash.html">wit-piDash</a></li>
+						<li><a href="wit-contentServe.html">wit-contentServe</a></li>
+					</ul>
+					<ul class="actions vertical">
+						<li><a href="/index.html" class="button special fit">Home</a></li>
+					</ul>
+				</nav>
+
+				<section id="banner" class="major"  style="background-image: url('../images/2018-corporare-official-wit-serve.png');background-size: 450px 450px;">
+					<div class="inner">
+						<header class="major">
+							<h1>wit-serve</i></h1>
+						</header>
+						<div class="content">
+							<p>Main server for all wit products.</p>
+							<!--<ul class="actions">
+								<li><a target="_blank" href="https://github.com/wozitech/wit-serve" class="button next scrolly">Get the code</a></li>
+							</ul>-->
+						</div>
+					</div>
+				</section>
+
+				<!-- Main -->
+				<div id="main" class="alt">
+
+					<!-- One -->
+					<section id="one">
+						<div class="inner" style="padding-top: 0px;">
+							<header>
+								<h1>Introduction</h1>
+							</header>
+							<p>
+								The cornerstone of all <code>wit</code> products, this is a suite of serverless <a href="../technologies/microservices.html">microservices</a>,
+								providing a common set of services across all <code>wit</code> products including, but not limited to, 
+								licensing &amp; subscription, authentication &amp; authorisation, application updates/upgrades, notifications,
+								billing, payments, account management, registration, user management and device management, in
+								addition to federating access to 3rd party services, such as, transport, news &amp; weather.
+							</p>
+							<header>
+								<h2>Serverless Microservices</h2>
+							</header>
+							<p>
+								Serverless in deployment allowing to accommodate any dynamic load scenario as demand requires.
+								Cloud Provider Agnostic - AWS, Azure, GCP and/or public/private cloud Kubernetes deployment.
+							</p>
+							<p>
+								Fine grained Microservices, allowing for fine scaling by function, isolation between function
+								and benefitting from the best use of technologies specific to that function. WOZiTech promotes
+								node.js and MongoDB, but being tech agnostic and having a experience in a large number of tech,
+								WOZiTech will not shy away from say a &quot;C#.net/SQLserver&quot; microservice if that is more
+								relevant for the task at hand.
+							</p>
+							<header>
+								<h2>Secure From Ground Up</h2>
+							</header>	
+							<p>
+								<a href="../technologies/tokenSecurity.html">Token-based API security</a> built in from the ground up. Not
+								just authentication, but authorisation too through client ids, audiences and claims. Auth0 is preferred by
+								WOZitech, as the industry leading provider of security
+								as a platform, supporting extensive set of Identity Management scenarios including, but not
+								limited to, social media (Facebook, github, google, Twitter), native client (Microsoft, Android, iPhone),
+								SPA web applications and significantly here, APIs.
+							</p>
+							<p>All environments, except local development, enforce TLS (SSL) encryption to secure data in transit, passing JWT
+								in the HTTP Authorization header.</p>
+							<header>
+								<h2>API Gateway</h2>
+							</header>	
+							<p>
+								<code>wit-serve</code> itself is the gateway to the <code>wit</code> set of microservices, providing
+								federated access across all discovered services including logging, profiling and, where necessary, caching.
+							</p>
+							<p>
+								API namespace is important; accessing microservices by portable URIs, across multiple environments. A
+								microservice must be resolvable by URI and RESTful actions (GET, POST, DELETE, PUT) upon that URI.
+							</p>
+							<p>
+								Although microservices can be platform agnostic, all <code>wit</code> microservices are deployed to the AWS platform.
+								This however has little sigificance, because as an API gateway, the deployment of <code>wit-serve</code>
+								only is significant; all <code>wit</code> microservices, although individually directly accessible are accessed
+								via this gateway. Consequently only one root domain is required for the namespace to resolve <code>wit-serve</code> microservices.
+								<br/><br/>
+								But separate namespaces are required for each environment. To allow for common TLS (SSL) certificates to
+								secure transport, the environment namespace must derive from a common namespace. All <code>wit</code>
+								microservices can be consumed by any <code>wit</code> product.
+							</p>
+							<p>
+								The namespace used for <code>wit</code> microservices will follow this pattern:
+								<blockquote><code>[http|https]://&lt;environment&gt;.api.wit.wozitech.click/&lt;service name&gt;</code></blockquote>
+
+								It is noted that by including the environment within the root namespace, each environment &apos;can&apos; itself be deployed
+								to separate cloud providers; for example, production to AWS, acceptance to Azure and regression to GCP. All that is required
+								is a little cleverness to manage the sub-domains across cloud providers.
+							</p>
+							<p>
+								Different client platforms have different API interaction needs. An SPA web application will invoke an microservice API
+								differently to that of an Android client application. <code>wit-serve</code> is the 'Backend for the Frontend' providing
+								facades to deliver the API more efficiently.
+								<br/><br/>
+								As a gateway, <code>wit-serve</code> will employ good microservice patterns to ensure API availability, including, but not
+								limited to, circuit breaking and failover.
+							</p>
+							<header>
+								<h2>Local Development and Test</h2>
+							</header>	
+							<p>
+								Develop and run functions locally to speed development and use best practice unit and integration tests.
+							</p>
+							<p>
+								Local deployment allows simple and effective development/testing of client applications &amp; services
+								that depend on these functions. But rather the developer having to create individual test environments
+								with each dependable function then deployed and consequently configure their client accordingly, all
+								<code>wit-serve</code> functions can be deployed to a local APIGW (nest.js single instance).
+
+								Alternatively, a <code>wit-serve</code> Docker image using 'localstack'.
+							</p>
+						</div>
+					</section>
+					<section id="one">
+						<div class="inner" style="padding-top: 0px;">
+							<header>
+								<h1>Showcase</h1>
+							</header>	
+							<p>
+								Showcasing in this project is:
+								<ul>
+									<li><a target="_blank" href="https://www.npmjs.com/package/lambda-framework">Lambda Framework</a> - despite its name, this is a Javascript API for abstracting serverless web applications for any provider (common cloud or custom).</li>
+									<li><a target="_blank" href="https://github.com/middyjs/middy">middy</a> - lightweight middleware engine for AWS Lambda functions.</li>
+									<li class="tbc"><a target="_blank" href="https://docs.pact.io/">pact.io</a> - consumer driven contract test tool.</li>
+
+									<li class="tbc"><a target="_blank" href="https://konghq.com/">Kong</a> - the modern day API Gateway, along with <a target="_blank" href="https://hub.docker.com/_/kong/">Docker Kong</a> = a Docker runable image of Kong (requires external Cassandra/PostgreSQL instance).</li>
+									
+										
+									<li><a target="_blank" href="https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html">AWS APIGW</a> - industry leading serverless technology from AWS to expose lambda functions.</li>
+									<li><a target="_blank" href="https://aws.amazon.com/lambda/">AWS Lambda</a> - industry leading serverless technology from AWS.</li>
+									<li><a target="_blank" href="https://aws.amazon.com/step-functions/">AWS Step Functions</a> - Orchestrating AWS Lambda.</li>
+									<li class="tbc"><a target="_blank" href="https://github.com/kubeless/kubeless">kubeless</a> - Kubernetes answer to serverless functions.</li>
+									<li class="tbc"><a target="_blank" href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference-node">Azure Functions</a> - Microsoft&quot;s answer to serverless functions.</li>
+									<li class="tbc"><a target="_blank" href="https://cloud.google.com/functions/">GCP Functions</a> - Google&quot;s  answer to serverless functions.</li>									
+									<li>
+										<a target="_blank" href="https://github.com/localstack/localstack">localstack</a> - A fully functional local AWS cloud stack, but more specifically 
+											<a target="_blank" href="https://hub.docker.com/r/localstack/localstack/">localstack docker</a> - a runable docker image.
+									</li>
+									<li><a target="_blank" href="https://nestjs.com/">nest.js</a> - node.js framework brokering local (test) access to functions by client services.</li>
+									<li><a target="_blank" href="https://auth0.com/">Auth0</a> - never compromise on Identity; security from the ground up across all services.</li>
+									<li>
+										<a target="_blank" href="https://serverless.com/">Serverless Framework</a> - open source agnostic serverless development and deployment.
+										And following on from this, introducing:
+										<ul>
+											<li class="tbc"><a target="_blank" href="https://serverless.com/event-gateway">Serverless Event Gateway</a> - X-Cloud Providers event router.</li>
+											<li class="tbc"><a target="_blank" href="https://serverless.com/dashboard">Serverless Dashboard</a> - visualisation, monitoring &amp; management of serverless functions x-cloud providers.</li>
+										</ul>
+									</li>
+								</ul>
+							</p>
+						</div>
+					</section>
+
+
+				</div>
+
+				<!-- Footer -->
+				<footer id="footer">
+					<div class="inner">
+						<ul class="icons">
+							<li><a target="_blank" href="https://www.linkedin.com/in/WarrenAyling/" class="icon alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a target="_blank" href="https://wozitech.myddns.rocks" class="icon alt fa-cogs"><span class="label">Technical</span></a></li>
+							<li><a target="_blank" href="https://github.com/wozitech" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
+					</ul>
+						<ul class="copyright">
+							<li>&copy; WOZ<i>iTech</i> 2023</li><li>Design: <a href="https://html5up.net">HTML5 UP (Forty)</a></li>
+						</ul>
+					</div>
+				</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../assets/js/skel.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="../assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../assets/js/main.js"></script>
+
+	</body>
+</html>
